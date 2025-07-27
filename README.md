@@ -53,3 +53,5 @@ export class UserComponent {
 ```
 
 ## Two way binding
+
+`ngModel` (FormsModule)
