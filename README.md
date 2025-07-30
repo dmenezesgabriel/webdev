@@ -9,7 +9,7 @@ npx @angular/cli@SPECIFIC_VERSION new my-app
 ```
 
 ```sh
-npx ng generate component dir/my-component
+npx ng generate component dir/my-component --skip-tests
 ```
 
 ```sh
