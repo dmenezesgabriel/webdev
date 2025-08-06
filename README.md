@@ -1,5 +1,9 @@
 # Angular
 
+## Separation of Concerns
+
+Every component should only do "one thing"
+
 ## Run
 
 ## Use specific Angular version
