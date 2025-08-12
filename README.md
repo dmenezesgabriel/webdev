@@ -91,3 +91,22 @@ import { BrowserModule } from "@angular/platform-browser";
 })
 export class AppModule {}
 ```
+
+## Extending a built-in element
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "button[appButton]",
+  standalone: true,
+  imports: [],
+  templateUrl: "./button.component.html",
+  styleUrl: "./button.component.css",
+})
+export class ButtonComponent {}
+```
+
+```html
+<button appButton></button>
+```
