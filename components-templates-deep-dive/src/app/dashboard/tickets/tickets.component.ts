@@ -5,7 +5,11 @@ import { NewTicketComponent } from './new-ticket/new-ticket.component';
   selector: 'app-tickets',
   standalone: true,
   imports: [NewTicketComponent],
-  templateUrl: './tickets.component.html',
   styleUrl: './tickets.component.css',
+  template: `
+    <div id="new-ticket">
+      <app-new-ticket />
+    </div>
+  `,
 })
 export class TicketsComponent {}
