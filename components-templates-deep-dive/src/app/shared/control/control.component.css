@@ -1,4 +1,4 @@
-:host label {
+.control label {
   display: block;
   font-size: 0.8rem;
   font-weight: bold;
@@ -6,8 +6,8 @@
   color: #4f4b53;
 }
 
-:host input,
-:host textarea {
+.control input,
+.control textarea {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;

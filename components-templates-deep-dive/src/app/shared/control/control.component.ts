@@ -1,4 +1,13 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  inject,
+  Inject,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -7,6 +16,9 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   styleUrl: './control.component.css',
   // disables styles encapsulation (turn into global styles)
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'control', // old @HostBinding('class'), @HostListener('click')
+  },
   template: `
     <p class="control">
       <label>{{ label }}</label>
@@ -15,5 +27,11 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   `,
 })
 export class ControlComponent {
+  // @HostBinding('class') className = 'control'; backward compatibility
   @Input({ required: true }) label!: string;
+  private el = inject(ElementRef);
+
+  @HostListener('click') onClick() {
+    console.log(this.el);
+  }
 }

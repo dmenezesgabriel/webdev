@@ -6,15 +6,13 @@ import { Component, Input } from '@angular/core';
   imports: [],
   styleUrl: './dashboard-item.component.css',
   template: `
-    <div class="dashboard-item">
-      <article>
-        <header>
-          <img [src]="image.src" [alt]="image.alt" />
-          <h2>{{ title }}</h2>
-        </header>
-        <ng-content />
-      </article>
-    </div>
+    <article>
+      <header>
+        <img [src]="image.src" [alt]="image.alt" />
+        <h2>{{ title }}</h2>
+      </header>
+      <ng-content />
+    </article>
   `,
 })
 export class DashboardItemComponent {
