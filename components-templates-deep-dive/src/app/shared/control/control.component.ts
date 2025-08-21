@@ -1,5 +1,6 @@
 import {
   Component,
+  ContentChild,
   ElementRef,
   HostBinding,
   HostListener,
@@ -29,9 +30,13 @@ import {
 export class ControlComponent {
   // @HostBinding('class') className = 'control'; backward compatibility
   @Input({ required: true }) label!: string;
+  @ContentChild('input') private control?: ElementRef<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
   private el = inject(ElementRef);
 
   @HostListener('click') onClick() {
     console.log(this.el);
+    console.log(this.control);
   }
 }
