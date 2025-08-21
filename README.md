@@ -110,3 +110,12 @@ export class ButtonComponent {}
 ```html
 <button appButton></button>
 ```
+
+## Directives
+
+### Structural directives
+
+Change the DOM
+
+- `*ngIf`
+- `*ngFor`
