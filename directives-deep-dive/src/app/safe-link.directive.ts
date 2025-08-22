@@ -1,4 +1,8 @@
-import { Directive, input } from '@angular/core';
+/**
+ * Attribute directive example
+ */
+import { Directive, ElementRef, inject, input } from '@angular/core';
+import { LogDirective } from './log.directive';
 
 @Directive({
   selector: 'a[appSafeLink]',
@@ -6,9 +10,12 @@ import { Directive, input } from '@angular/core';
   host: {
     '(click)': 'onConfirmLeavePage($event)',
   },
+  hostDirectives: [LogDirective],
 })
 export class SafeLinkDirective {
-  queryParam = input('myapp');
+  // without alias queryParam attribute should be added to the element
+  queryParam = input('myapp', { alias: 'appSafeLink' });
+  private hostElementRef = inject<ElementRef<HTMLAnchorElement>>(ElementRef);
 
   constructor() {
     console.log('SafeLinkDirective is active!');
@@ -18,8 +25,8 @@ export class SafeLinkDirective {
     const wantsToLeave = window.confirm('Do you want to live the app?');
 
     if (wantsToLeave) {
-      const address = (event.target as HTMLAnchorElement).href;
-      (event.target as HTMLAnchorElement).href =
+      const address = this.hostElementRef.nativeElement.href;
+      this.hostElementRef.nativeElement.href =
         address + '?from=' + this.queryParam();
       return;
     }

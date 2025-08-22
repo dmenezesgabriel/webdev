@@ -5,6 +5,22 @@
 
   <app-auth />
 
-  <p *ngIf="isAdmin()">Only admins can see this!</p>
+  <!-- <ng-template appAuth="admin">
+    <p>Only admins can see this!</p>
+  </ng-template> -->
+
+  <p
+    *appAuth="'admin'"
+    class="protected-content admin"
+  >Only admins can see this!</p>
+  <p
+    *appAuth="'user'"
+    class="protected-content unauthenticated"
+  >Regular users should see this!</p>
+  <p
+    *appAuth="'guest'"
+    appLog
+    class="protected-content authenticated"
+  >Guest users should see this!</p>
 
 </main>

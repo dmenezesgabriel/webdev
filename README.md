@@ -119,3 +119,11 @@ Change the DOM
 
 - `*ngIf`
 - `*ngFor`
+
+_`*` is syntactic sugar for `ng-template`_
+
+```html
+<ng-template ngIf="condition">
+  <p>Show me!</p>
+</ng-template>
+```
