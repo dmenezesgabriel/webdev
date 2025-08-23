@@ -28,8 +28,9 @@
       </div>
     </header>
     <ul>
-      @for (temperature of historicTemperatures; track temperature) {
-      <li (click)="onReset($index)">{{ temperature }}</li>
+      @for (temperature of historicTemperatures | sort; track temperature) {
+      <li (click)="onReset($index)">{{ temperature | temperature: "cel":"fah" }}
+      </li>
       }
     </ul>
   </article>
