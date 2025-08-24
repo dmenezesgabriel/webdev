@@ -32,24 +32,24 @@ jobs:
         with:
           node-version: 22
           cache: "pnpm"
-          cache-dependency-path: _docs/pnpm-lock.yaml
+          cache-dependency-path: docs/pnpm-lock.yaml
 
       - name: Install dependencies
         shell: bash
-        working-directory: _docs
+        working-directory: docs
         run: pnpm install
 
       - name: Setup pages
         uses: actions/configure-pages@v4
 
       - name: Build with Astro
-        working-directory: _docs
+        working-directory: docs
         run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _docs/dist
+          path: docs/dist
 
   deploy:
     environment:
