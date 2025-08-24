@@ -6,6 +6,9 @@ import analogjsangular from "@analogjs/astro-angular";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://dmenezesgabriel.github.io",
+  base: "/angular",
+
   integrations: [
     starlight({
       title: "My Docs",
