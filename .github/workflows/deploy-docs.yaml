@@ -30,9 +30,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          working-directory: _docs
           node-version: 22
           cache: "pnpm"
+          cache-dependency-path: _docs/pnpm-lock.yaml
 
       - name: Install dependencies
         shell: bash
