@@ -244,3 +244,7 @@ export class OnPushComponent {
 ```
 
 _When using signals, zone.js is not required anymore for change detection_
+
+## Observables
+
+It is a concept introduced by RxJS library to handle asynchronous data streams
