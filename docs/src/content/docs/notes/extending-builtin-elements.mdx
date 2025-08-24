@@ -1,0 +1,34 @@
+---
+title: "Extending Built-in Elements"
+description: "Learn how to extend built-in HTML elements in Angular"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+<Tabs>
+  <TabItem label="button.component.ts">
+
+```ts
+// button.component.ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "button[appButton]",
+  standalone: true,
+  imports: [],
+  templateUrl: "./button.component.html",
+  styleUrl: "./button.component.css",
+})
+export class ButtonComponent {}
+```
+
+  </TabItem>
+  <TabItem label="button.component.html">
+
+```html
+<!-- button.component.html -->
+<button appButton></button>
+```
+
+  </TabItem>
+</Tabs>

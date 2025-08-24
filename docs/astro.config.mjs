@@ -11,7 +11,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: "My Docs",
+      title: "Angular Notes",
       social: [
         {
           icon: "github",
@@ -21,15 +21,24 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Guides",
+          label: "Notes",
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "angular/guides/example" },
+            { label: "Getting Started", slug: "notes/getting-started" },
+            { label: "Components", slug: "notes/components" },
+            { label: "Attribute Binding", slug: "notes/attribute-binding" },
+            { label: "Directives", slug: "notes/directives" },
+            {
+              label: "Extending Built-In HTML Elements",
+              slug: "notes/extending-builtin-elements",
+            },
+            { label: "Zones and Change Detection", slug: "notes/zones" },
+            { label: "Observables", slug: "notes/observables" },
+            { label: "Signals", slug: "notes/signals" },
+            { label: "Modules", slug: "notes/modules" },
+            { label: "Services", slug: "notes/services" },
+            { label: "Http Requests", slug: "notes/http-requests" },
           ],
-        },
-        {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
         },
       ],
     }),
