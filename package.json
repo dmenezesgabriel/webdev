@@ -5,8 +5,11 @@
   "scripts": {
     "dev:docs": "pnpm --filter docs dev",
     "build:docs": "pnpm --recursive run build  --filter docs",
+    "prepreview:docs": "pnpm --filter docs build",
+    "preview:docs": "pnpm --filter docs preview",
     "dev:react": "pnpm --filter react-remote dev",
     "build:react": "pnpm --filter react-remote build",
+    "prepreview:react": "pnpm --filter react-remote build",
     "preview:react": "pnpm --filter react-remote preview"
   },
   "dependencies": {

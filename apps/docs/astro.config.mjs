@@ -43,20 +43,15 @@ export default defineConfig({
         },
       ],
     }),
-    analogjsangular({
-      vite: {
-        transformFilter: (_code, id) => {
-          return id.includes("src/components/angular"); // <- only transform Angular TypeScript files
-        },
-      },
-    }),
     react(),
+    analogjsangular(), // vite transformFilter conflicts with react
     astroModuleFederation({
       name: "astroHost",
       remotes: {
         viteRemote: "http://localhost:4173/vite-remote/assets/remoteEntry.js",
       },
       exposes: {},
+      // putting react and react-dom on shared deps generates build error
     }),
   ],
   vite: {
