@@ -36,20 +36,25 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        # Update the working directory to the new path
         run: pnpm install
 
       - name: Setup pages
         uses: actions/configure-pages@v4
 
+      - name: Build React remote
+        run: pnpm build:react
+
       - name: Build with Astro
-        # Update the working directory to the new path
         run: pnpm build:docs
+
+      - name: Copy React remote to subfolder
+        run: |
+          mkdir -p apps/docs/dist/vite-remote
+          cp -r apps/react-remote/dist/* apps/docs/dist/vite-remote/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Update the path to the new directory
           path: apps/docs/dist
 
   deploy:

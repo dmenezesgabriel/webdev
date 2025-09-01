@@ -5,6 +5,8 @@ import analogjsangular from "@analogjs/astro-angular";
 import astroModuleFederation from "astro-module-federation";
 import react from "@astrojs/react";
 
+const viteRemoteUrl = import.meta.env.VITE_VITE_REMOTE_URL;
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://dmenezesgabriel.github.io",
@@ -44,11 +46,17 @@ export default defineConfig({
       ],
     }),
     react(),
-    analogjsangular(), // vite transformFilter conflicts with react
+    analogjsangular({
+      vite: {
+        transformFilter: (_code, id) => {
+          return id.includes("src/components"); // <- only transform Angular TypeScript files
+        },
+      },
+    }),
     astroModuleFederation({
       name: "astroHost",
       remotes: {
-        viteRemote: "http://localhost:4173/vite-remote/assets/remoteEntry.js",
+        viteRemote: viteRemoteUrl,
       },
       exposes: {},
       // putting react and react-dom on shared deps generates build error
