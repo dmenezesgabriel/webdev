@@ -6,8 +6,11 @@ import astroModuleFederation from "astro-module-federation";
 import react from "@astrojs/react";
 import { loadEnv } from "vite";
 
-const mode = import.meta.env.MODE;
+const mode = process.env.NODE_ENV ?? "development";
 const { PUBLIC_VITE_REMOTE_URL } = loadEnv(mode, process.cwd(), "");
+
+console.log(mode);
+console.log(PUBLIC_VITE_REMOTE_URL);
 
 // https://astro.build/config
 export default defineConfig({
@@ -76,15 +79,18 @@ export default defineConfig({
       minify: false,
       cssCodeSplit: false,
     },
-    // server: {
-    //   proxy: {
-    //     "/vite-remote": {
-    //       target: "http://localhost:4173",
-    //       changeOrigin: true,
-    //       secure: false,
-    //       ws: true,
-    //     },
-    //   },
-    // },
+    server:
+      mode === "development"
+        ? {
+            proxy: {
+              "/vite-remote": {
+                target: "http://localhost:4173",
+                changeOrigin: true,
+                secure: false,
+                ws: true,
+              },
+            },
+          }
+        : {},
   },
 });
