@@ -4,9 +4,9 @@ import federation from "@originjs/vite-plugin-federation";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/angular/vite-remote/",
+  base: "./",
   build: {
-    outDir: "dist", // default, will deploy as /angular/vite-remote
+    outDir: "dist",
     modulePreload: false,
     target: "esnext",
     minify: false,
