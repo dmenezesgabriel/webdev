@@ -5,6 +5,7 @@
   "scripts": {
     "dev:docs": "pnpm --filter docs dev",
     "build:docs": "pnpm --recursive run build  --filter docs",
+    "build:docs:prod": "pnpm --recursive run build --filter docs --mode production",
     "prepreview:docs": "pnpm --filter docs build",
     "preview:docs": "pnpm --filter docs preview",
     "dev:react": "pnpm --filter react-remote dev",
