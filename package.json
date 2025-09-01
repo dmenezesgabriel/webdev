@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev:docs": "pnpm --filter docs dev",
-    "build:docs": "pnpm --filter docs build",
+    "build:docs": "pnpm --recursive run build  --filter docs",
     "dev:react": "pnpm --filter react-remote dev",
     "build:react": "pnpm --filter react-remote build",
     "preview:react": "pnpm --filter react-remote preview"
