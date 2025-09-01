@@ -89,6 +89,9 @@ importers:
       typescript:
         specifier: 5.9.2
         version: 5.9.2
+      vite:
+        specifier: ^7.1.2
+        version: 7.1.2(@types/node@24.3.0)(jiti@1.21.7)(less@4.4.0)(sass@1.90.0)(terser@5.43.1)
       zone.js:
         specifier: ^0.15.1
         version: 0.15.1

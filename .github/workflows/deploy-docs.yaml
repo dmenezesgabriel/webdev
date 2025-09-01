@@ -45,7 +45,7 @@ jobs:
         run: pnpm build:react
 
       - name: Build with Astro
-        run: pnpm build:docs:prod
+        run: pnpm build:docs
 
       - name: Copy React remote to subfolder
         run: |

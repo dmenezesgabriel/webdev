@@ -4,8 +4,13 @@ import starlight from "@astrojs/starlight";
 import analogjsangular from "@analogjs/astro-angular";
 import astroModuleFederation from "astro-module-federation";
 import react from "@astrojs/react";
+import { loadEnv } from "vite";
 
-const viteRemoteUrl = import.meta.env.VITE_VITE_REMOTE_URL;
+const { PUBLIC_VITE_REMOTE_URL } = loadEnv(
+  import.meta.env.MODE,
+  process.cwd(),
+  ""
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -56,7 +61,7 @@ export default defineConfig({
     astroModuleFederation({
       name: "astroHost",
       remotes: {
-        viteRemote: viteRemoteUrl,
+        viteRemote: PUBLIC_VITE_REMOTE_URL,
       },
       exposes: {},
       // putting react and react-dom on shared deps generates build error
