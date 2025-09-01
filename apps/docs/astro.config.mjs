@@ -7,7 +7,6 @@ import react from "@astrojs/react";
 import { loadEnv } from "vite";
 
 const mode = import.meta.env.MODE;
-const isDev = mode === "development";
 const { PUBLIC_VITE_REMOTE_URL } = loadEnv(mode, process.cwd(), "");
 
 // https://astro.build/config
@@ -59,9 +58,7 @@ export default defineConfig({
     astroModuleFederation({
       name: "astroHost",
       remotes: {
-        viteRemote: isDev
-          ? "http://localhost:4173/vite-remote/assets/remoteEntry.js"
-          : "/angular/vite-remote/remoteEntry.js",
+        viteRemote: PUBLIC_VITE_REMOTE_URL,
       },
       exposes: {},
       // putting react and react-dom on shared deps generates build error
@@ -79,18 +76,15 @@ export default defineConfig({
       minify: false,
       cssCodeSplit: false,
     },
-    server:
-      mode === "development"
-        ? {
-            proxy: {
-              "/vite-remote": {
-                target: "http://localhost:4173",
-                changeOrigin: true,
-                secure: false,
-                ws: true,
-              },
-            },
-          }
-        : {},
+    // server: {
+    //   proxy: {
+    //     "/vite-remote": {
+    //       target: "http://localhost:4173",
+    //       changeOrigin: true,
+    //       secure: false,
+    //       ws: true,
+    //     },
+    //   },
+    // },
   },
 });

@@ -5,9 +5,11 @@ export default function ViteRemoteComponent() {
   const url = import.meta.env.PUBLIC_VITE_REMOTE_URL;
   console.log(url);
   return (
-    <Suspense fallback="Loading">
+    <>
       {url}
-      <ViteApp />
-    </Suspense>
+      <Suspense fallback="Loading">
+        <ViteApp />
+      </Suspense>
+    </>
   );
 }
