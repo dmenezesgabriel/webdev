@@ -7,6 +7,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: "dist",
+    assetsDir: "",
     modulePreload: false,
     target: "esnext",
     minify: false,
