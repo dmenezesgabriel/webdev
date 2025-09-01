@@ -83,7 +83,7 @@ export default defineConfig({
       mode === "development"
         ? {
             proxy: {
-              "/vite-remote": {
+              "/angular/vite-remote": {
                 target: "http://localhost:4173",
                 changeOrigin: true,
                 secure: false,
