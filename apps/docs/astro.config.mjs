@@ -1,8 +1,9 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-
 import analogjsangular from "@analogjs/astro-angular";
+import astroModuleFederation from "astro-module-federation";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -45,9 +46,40 @@ export default defineConfig({
     analogjsangular({
       vite: {
         transformFilter: (_code, id) => {
-          return id.includes("src/components"); // <- only transform Angular TypeScript files
+          return id.includes("src/components/angular"); // <- only transform Angular TypeScript files
         },
       },
     }),
+    react(),
+    astroModuleFederation({
+      name: "astroHost",
+      remotes: {
+        viteRemote: "http://localhost:4173/vite-remote/assets/remoteEntry.js",
+      },
+      exposes: {},
+    }),
   ],
+  vite: {
+    build: {
+      sourcemap: true,
+      rollupOptions: {
+        logLevel: "debug",
+        external: ["viteRemote/App"],
+      },
+      modulePreload: false,
+      target: "esnext",
+      minify: false,
+      cssCodeSplit: false,
+    },
+    server: {
+      proxy: {
+        "/vite-remote": {
+          target: "http://localhost:4173",
+          changeOrigin: true,
+          secure: false,
+          ws: true,
+        },
+      },
+    },
+  },
 });

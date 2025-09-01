@@ -8,7 +8,7 @@ Generate a new Angular project using the Angular CLI with a specific version:
 use the command `npx @angular/cli@<SPECIFIC_VERSION> new my-app-name` as exemplified below:
 
 ```sh
-npx @angular/cli@18 new my-app
+npx @angular/cli@18 new my-app --package-manager pnpm
 ```
 
 Generate a component without test files:
