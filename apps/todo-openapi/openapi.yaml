@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Todo API
+  version: 1.0.0
+  description: A simple REST API for managing users and todos.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /users:
+    $ref: "./paths/users.yaml"
+
+  /users/{userId}/todos:
+    $ref: "./paths/todos.yaml"
+
+components:
+  schemas:
+    User:
+      $ref: "./components/schemas/user.yaml"
+    Todo:
+      $ref: "./components/schemas/todo.yaml"
+
+  parameters:
+    userId:
+      $ref: "./components/parameters/userId.yaml"
+    todoId:
+      $ref: "./components/parameters/todoId.yaml"

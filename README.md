@@ -1,6 +1,18 @@
-# Angular Notes
+# Web Notes
 
 Visit https://dmenezesgabriel.github.io/angular/
+
+WIP
+
+- todo-drizzle
+- todo-core
+- todo-fastify
+- todo-openapi
+- todo-angular
+- todo-react
+- docs
+- lambda-layer (todo-core + todo-drizzle)
+- lambdas + apigateway + terraform
 
 ## Resources
 

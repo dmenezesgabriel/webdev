@@ -1,0 +1,18 @@
+{
+  "name": "todo-openapi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./spec": "./dist/openapi.bundle.json"
+  },
+  "scripts": {
+    "build": "node scripts/bundle-spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "12.0.0"
+  }
+}
