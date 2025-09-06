@@ -1,8 +1,6 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
-import { listTodosUseCaseFactory } from "@/application/use-cases/factories/list-todos.factory";
-
 export async function listTodosController(
   request: FastifyRequest,
   reply: FastifyReply
@@ -12,8 +10,8 @@ export async function listTodosController(
   });
 
   const { userId } = paramsSchema.parse(request.params);
-  const listTodosUseCase = listTodosUseCaseFactory();
-  const todos = listTodosUseCase.execute(userId);
+  const listTodosUseCase = request.diScope.resolve("listTodosUseCase");
+  const todos = await listTodosUseCase.execute(userId);
 
   return reply.send(todos);
 }

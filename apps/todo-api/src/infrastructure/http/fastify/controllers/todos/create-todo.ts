@@ -1,8 +1,6 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
-import { createTodoUseCaseFactory } from "@/application/use-cases/factories/create-todo-factory";
-
 export async function createTodoController(
   request: FastifyRequest,
   reply: FastifyReply
@@ -18,8 +16,8 @@ export async function createTodoController(
   const { userId } = paramsSchema.parse(request.params);
   const { title } = bodySchema.parse(request.body);
 
-  const createTodoUseCase = createTodoUseCaseFactory();
-  const todo = createTodoUseCase.execute({ title, userId });
+  const createTodoUseCase = request.diScope.resolve("createTodoUseCase");
+  const todo = await createTodoUseCase.execute({ title, userId });
 
   return reply.code(201).send(todo);
 }

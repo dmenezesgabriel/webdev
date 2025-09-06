@@ -1,6 +1,5 @@
 parameters:
   - $ref: "../components/parameters/userId.yaml"
-  - $ref: "../components/parameters/todoId.yaml"
 
 post:
   summary: Create a todo for a user
@@ -35,9 +34,3 @@ get:
             type: array
             items:
               $ref: "../components/schemas/todo.yaml"
-
-delete:
-  summary: Delete a todo by id
-  responses:
-    "204":
-      description: Todo deleted

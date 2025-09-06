@@ -7,5 +7,5 @@ import { listTodosController } from "./list-todos";
 export async function todoRoutes(app: FastifyInstance) {
   app.post("/users/:userId/todos", createTodoController);
   app.get("/users/:userId/todos", listTodosController);
-  app.delete("/users/:userId/todos/:id", deleteTodoController);
+  app.delete("/users/:userId/todos/:todoId", deleteTodoController);
 }

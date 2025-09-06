@@ -5,7 +5,7 @@ info:
   description: A simple REST API for managing users and todos.
 
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:3333
 
 paths:
   /users:
@@ -13,6 +13,9 @@ paths:
 
   /users/{userId}/todos:
     $ref: "./paths/todos.yaml"
+
+  /users/{userId}/todos/{todoId}:
+    $ref: "./paths/todo-by-id.yaml"
 
 components:
   schemas:

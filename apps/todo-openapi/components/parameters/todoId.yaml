@@ -1,4 +1,4 @@
-name: id
+name: todoId
 in: path
 required: true
 schema:
