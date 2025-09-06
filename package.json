@@ -10,7 +10,8 @@
     "dev:react": "pnpm --filter react-remote dev",
     "build:react": "pnpm --filter react-remote build",
     "prepreview:react": "pnpm --filter react-remote build",
-    "preview:react": "pnpm --filter react-remote preview"
+    "preview:react": "pnpm --filter react-remote preview",
+    "dev:todo-api": "pnpm --filter todo-api dev"
   },
   "dependencies": {
     "typescript": "5.9.2"

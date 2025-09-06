@@ -1,0 +1,30 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/http/server.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/infrastructure/http/fastify/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier-config": "workspace:*",
+    "typescript-config": "workspace:*",
+    "eslint-config": "workspace:*",
+    "@types/node": "24.3.0",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2"
+  },
+  "dependencies": {
+    "@fastify/cors": "11.1.0",
+    "@fastify/jwt": "10.0.0",
+    "@fastify/swagger": "9.5.1",
+    "@fastify/swagger-ui": "5.2.3",
+    "fastify": "5.6.0",
+    "zod": "4.1.5"
+  },
+  "prettier": "prettier-config"
+}
