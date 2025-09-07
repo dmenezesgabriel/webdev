@@ -10,3 +10,5 @@ properties:
     format: email
   password:
     type: string
+  role:
+    type: string

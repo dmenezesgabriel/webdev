@@ -2,11 +2,13 @@ import { diContainer, fastifyAwilixPlugin } from "@fastify/awilix";
 import { asClass, asFunction, Lifetime } from "awilix";
 import fp from "fastify-plugin";
 
+import { AuthenticateUseCase } from "@/application/use-cases/authenticate";
 import { CreateTodoUseCase } from "@/application/use-cases/create-todo";
 import { CreateUserUseCase } from "@/application/use-cases/create-user";
 import { DeleteTodoUseCase } from "@/application/use-cases/delete-todo";
 import { ListTodosUseCase } from "@/application/use-cases/list-todos";
 import { ListUsersUseCase } from "@/application/use-cases/list-users";
+import { GetUserProfileUseCase } from "@/application/use-cases/profile";
 import { InMemoryTodoRepository } from "@/infrastructure/database/in-memory/repositories/in-memory-todo-repository";
 import { InMemoryUserRepository } from "@/infrastructure/database/in-memory/repositories/in-memory-user-repository";
 
@@ -20,6 +22,9 @@ declare module "@fastify/awilix" {
     createTodoUseCase: CreateTodoUseCase;
     listTodosUseCase: ListTodosUseCase;
     deleteTodoUseCase: DeleteTodoUseCase;
+
+    authenticateUseCase: AuthenticateUseCase;
+    getUserProfileUseCase: GetUserProfileUseCase;
   }
 }
 
@@ -65,6 +70,18 @@ export const containerPlugin = fp(async (app) => {
     deleteTodoUseCase: asFunction(
       ({ userRepository, todoRepository }) => {
         return new DeleteTodoUseCase(todoRepository, userRepository);
+      },
+      { lifetime: Lifetime.SCOPED }
+    ),
+    authenticateUseCase: asFunction(
+      ({ userRepository }) => {
+        return new AuthenticateUseCase(userRepository);
+      },
+      { lifetime: Lifetime.SCOPED }
+    ),
+    getUserProfileUseCase: asFunction(
+      ({ userRepository }) => {
+        return new GetUserProfileUseCase(userRepository);
       },
       { lifetime: Lifetime.SCOPED }
     ),
