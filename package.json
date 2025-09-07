@@ -13,9 +13,7 @@
     "preview:react": "pnpm --filter react-remote preview",
     "dev:todo-api": "pnpm --filter todo-api dev",
     "build:todo-openapi": "pnpm --filter todo-openapi... build",
-    "build:openapi-spec-bundler": "pnpm --filter openapi-spec-bundler... build"
-  },
-  "dependencies": {
-    "typescript": "5.9.2"
+    "build:openapi-spec-bundler": "pnpm --filter openapi-spec-bundler... build",
+    "start:todo-angular": "pnpm --filter todo-angular start"
   }
 }

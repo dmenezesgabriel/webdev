@@ -5,20 +5,32 @@ description: "Get started with Angular"
 
 Generate a new Angular project using the Angular CLI with a specific version:
 
-use the command `npx @angular/cli@<SPECIFIC_VERSION> new my-app-name` as exemplified below:
+use the command `pnpx @angular/cli@<SPECIFIC_VERSION> new my-app-name` as exemplified below:
 
 ```sh
-npx @angular/cli@18 new my-app --package-manager pnpm
+pnpx @angular/cli@18 new my-app --package-manager pnpm
+```
+
+You can pass several flags to this command:
+
+```sh
+pnpx @angular/cli@18 new todo-angular --routing --style=scss --standalone false --package-manager pnpm
 ```
 
 Generate a component without test files:
 
 ```sh
-npx ng generate component dir/my-component --skip-tests
+ng generate component dir/my-component --skip-tests
+```
+
+also:
+
+```sh
+ng g c shared/my-component --standalone=false
 ```
 
 Serve the application locally:
 
 ```sh
-npx ng serve
+ng serve
 ```
