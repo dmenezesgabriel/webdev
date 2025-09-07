@@ -7,12 +7,12 @@
     "./spec": "./dist/openapi.bundle.json"
   },
   "scripts": {
-    "build": "node scripts/bundle-spec.js"
+    "build": "openapi-spec-bundler ./openapi.yaml ./dist/openapi.bundle.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@apidevtools/swagger-parser": "12.0.0"
+    "openapi-spec-bundler": "workspace:*"
   }
 }
