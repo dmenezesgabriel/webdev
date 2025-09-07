@@ -14,10 +14,10 @@
     "@types/node": "24.3.0",
     "eslint-config": "workspace:*",
     "prettier-config": "workspace:*",
+    "typescript-config": "workspace:*",
     "todo-openapi": "workspace:*",
     "tsx": "4.20.5",
-    "typescript": "5.9.2",
-    "typescript-config": "workspace:*"
+    "typescript": "5.9.2"
   },
   "dependencies": {
     "@fastify/awilix": "8.0.0",

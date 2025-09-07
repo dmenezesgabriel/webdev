@@ -1,0 +1,22 @@
+{
+  "name": "openapi-spec-bundler",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": {
+    "openapi-spec-bundler": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "eslint-config": "workspace:*",
+    "prettier-config": "workspace:*",
+    "typescript": "5.9.2",
+    "typescript-config": "workspace:*"
+  },
+  "prettier": "prettier-config"
+}

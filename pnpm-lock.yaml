@@ -199,9 +199,9 @@ importers:
 
   apps/todo-openapi:
     devDependencies:
-      '@apidevtools/swagger-parser':
-        specifier: 12.0.0
-        version: 12.0.0(openapi-types@12.1.3)
+      openapi-spec-bundler:
+        specifier: workspace:*
+        version: link:../../packages/openapi-spec-bundler
 
   config/eslint-config:
     devDependencies:
@@ -256,6 +256,28 @@ importers:
       vite-plugin-dts:
         specifier: 4.5.4
         version: 4.5.4(@types/node@24.3.0)(rollup@4.50.0)(typescript@5.9.2)(vite@7.1.2(@types/node@24.3.0)(jiti@1.21.7)(less@4.4.0)(sass@1.90.0)(terser@5.43.1)(tsx@4.20.5)(yaml@2.8.1))
+
+  packages/openapi-spec-bundler:
+    dependencies:
+      '@apidevtools/swagger-parser':
+        specifier: 12.0.0
+        version: 12.0.0(openapi-types@12.1.3)
+    devDependencies:
+      '@types/node':
+        specifier: 24.3.0
+        version: 24.3.0
+      eslint-config:
+        specifier: workspace:*
+        version: link:../../config/eslint-config
+      prettier-config:
+        specifier: workspace:*
+        version: link:../../config/prettier-config
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+      typescript-config:
+        specifier: workspace:*
+        version: link:../../config/typescript-config
 
 packages:
 

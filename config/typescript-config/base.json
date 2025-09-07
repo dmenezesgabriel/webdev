@@ -8,10 +8,11 @@
             "ESNext.Collection",
             "ESNext.Iterator"
         ],
-        "module": "es2015",
         "target": "es2022",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
+        "outDir": "dist",
+        "rootDir": "src",
     }
 }
