@@ -14,7 +14,7 @@ pnpx @angular/cli@18 new my-app --package-manager pnpm
 You can pass several flags to this command:
 
 ```sh
-pnpx @angular/cli@18 new todo-angular --routing --style=scss --standalone false --package-manager pnpm
+pnpx @angular/cli@18 new todo-angular --routing --style=scss --standalone false --package-manager pnpm --ssr=false
 ```
 
 Generate a component without test files:
@@ -26,7 +26,7 @@ ng generate component dir/my-component --skip-tests
 also:
 
 ```sh
-ng g c shared/my-component --standalone=false
+ng g c shared/my-component --standalone=false --module app.module
 ```
 
 Serve the application locally:
