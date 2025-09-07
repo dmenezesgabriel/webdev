@@ -1,6 +1,6 @@
 post:
   summary: Logout user
-  tags: [user]
+  tags: [users]
   description: Clears the refresh token cookie, effectively logging out the user.
   responses:
     "200":
