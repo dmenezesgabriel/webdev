@@ -3,6 +3,9 @@ parameters:
 
 post:
   summary: Create a todo for a user
+  tags: [todos]
+  security:
+    - bearerAuth: []
   requestBody:
     required: true
     content:
@@ -25,6 +28,9 @@ post:
 
 get:
   summary: List todos for a user
+  tags: [todos]
+  security:
+    - bearerAuth: []
   responses:
     "200":
       description: List of todos

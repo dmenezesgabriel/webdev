@@ -4,6 +4,9 @@ parameters:
 
 delete:
   summary: Delete a todo by id
+  tags: [todos]
+  security:
+    - bearerAuth: []
   responses:
     "204":
       description: Todo deleted

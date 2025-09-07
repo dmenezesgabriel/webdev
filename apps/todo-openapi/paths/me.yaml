@@ -1,0 +1,12 @@
+get:
+  summary: Get current user profile
+  tags: [users]
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Current user profile
+      content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/user.yaml"

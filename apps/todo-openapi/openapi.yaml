@@ -2,22 +2,18 @@ openapi: 3.1.0
 info:
   title: Todo API
   version: 1.0.0
-  description: A simple REST API for managing users and todos.
+  description: A simple REST API for managing users and todos with authentication.
 
 servers:
   - url: http://localhost:3333
 
-paths:
-  /users:
-    $ref: "./paths/users.yaml"
-
-  /users/{userId}/todos:
-    $ref: "./paths/todos.yaml"
-
-  /users/{userId}/todos/{todoId}:
-    $ref: "./paths/todo-by-id.yaml"
-
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     User:
       $ref: "./components/schemas/user.yaml"
@@ -29,3 +25,25 @@ components:
       $ref: "./components/parameters/userId.yaml"
     todoId:
       $ref: "./components/parameters/todoId.yaml"
+
+paths:
+  /users:
+    $ref: "./paths/users.yaml"
+
+  /sessions:
+    $ref: "./paths/sessions.yaml"
+
+  /token/refresh:
+    $ref: "./paths/token-refresh.yaml"
+
+  /me:
+    $ref: "./paths/me.yaml"
+
+  /users/{userId}/todos:
+    $ref: "./paths/todos.yaml"
+
+  /users/{userId}/todos/{todoId}:
+    $ref: "./paths/todo-by-id.yaml"
+
+  /sessions/logout:
+    $ref: "./paths/logout.yaml"

@@ -1,5 +1,6 @@
 post:
   summary: Create a new user
+  tags: [users]
   requestBody:
     required: true
     content:
@@ -31,6 +32,7 @@ post:
 
 get:
   summary: List all users
+  tags: [users]
   responses:
     "200":
       description: List of users

@@ -1,0 +1,15 @@
+post:
+  summary: Logout user
+  tags: [user]
+  description: Clears the refresh token cookie, effectively logging out the user.
+  responses:
+    "200":
+      description: Successfully logged out
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Logged out successfully
