@@ -1,10 +1,7 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
-export async function deleteTodoController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
+export async function deleteTodo(request: FastifyRequest, reply: FastifyReply) {
   const paramsSchema = z.object({
     userId: z.uuid(),
     todoId: z.uuid(),

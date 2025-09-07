@@ -9,6 +9,7 @@ post:
           required:
             - name
             - email
+            - password
           properties:
             name:
               type: string
@@ -17,6 +18,9 @@ post:
               type: string
               format: email
               example: john@example.com
+            password:
+              type: string
+              example: 123456
   responses:
     "201":
       description: User created successfully

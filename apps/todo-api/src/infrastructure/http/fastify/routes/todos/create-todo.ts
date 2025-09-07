@@ -1,10 +1,7 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
-export async function createTodoController(
-  request: FastifyRequest,
-  reply: FastifyReply
-) {
+export async function createTodo(request: FastifyRequest, reply: FastifyReply) {
   const paramsSchema = z.object({
     userId: z.uuid(),
   });
