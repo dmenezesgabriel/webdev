@@ -11,7 +11,7 @@ import { env } from "@/env";
 import { containerPlugin } from "./container";
 import { errorHandler } from "./error-handler";
 import { todoRoutes } from "./routes/todos/todos-routes";
-import { userRoutes } from "./routes/users/users.routes";
+import { userRoutes } from "./routes/users/users-routes";
 
 export const app = Fastify({ logger: true });
 
