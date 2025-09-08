@@ -72,6 +72,46 @@ header p {
   line-height: 1.5;
 }
 
+/* New styles for header links */
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-left: auto;
+}
+
+.header-links a {
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+}
+
+.link-btn {
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.link-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  background: rgba(31, 41, 55, 0.5);
+}
+
+.action-btn {
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+}
+
 /* Responsive design for header */
 @media (max-width: 640px) {
   header {
