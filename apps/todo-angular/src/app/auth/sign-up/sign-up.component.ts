@@ -18,7 +18,7 @@ function passwordMatchValidator(control: AbstractControl) {
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss',
+  styleUrl: './sign-up.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpComponent {
