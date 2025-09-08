@@ -1,11 +1,13 @@
+/* src/app/app.component.scss */
 .app-container {
   position: relative;
   min-height: 100vh;
-
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  padding-top: 150px; /* Increased top padding */
 }
 
 .background-gradient {
@@ -14,8 +16,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-      elipse at center,
+  background:
+    radial-gradient(
+      ellipse at center,
       rgba(139, 92, 246, 0.15) 0%,
       rgba(59, 130, 246, 0.1) 25%,
       rgba(16, 185, 129, 0.05) 50%,
@@ -38,7 +41,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 25% 25%,
       rgba(139, 92, 246, 0.1) 0%,
       transparent 50%

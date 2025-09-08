@@ -11,7 +11,8 @@
   border: 1px solid rgba(75, 85, 99, 0.3);
   border-radius: 24px;
   padding: 3rem 2.5rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.05);
   animation: slideIn 0.8s ease-out;
   position: relative;
@@ -50,33 +51,6 @@
 .form-header {
   text-align: center;
   margin-bottom: 2.5rem;
-}
-
-.logo-placeholder {
-  margin-bottom: 1.5rem;
-}
-
-.logo-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #10b981);
-  border-radius: 16px;
-  position: relative;
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
-}
-
-.logo-icon::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  background: white;
-  border-radius: 6px;
-  opacity: 0.9;
 }
 
 .form-header h1 {
@@ -136,7 +110,8 @@
   outline: none;
   border-color: rgba(139, 92, 246, 0.6);
   background: rgba(31, 41, 55, 0.8);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1),
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.1),
     0 4px 12px rgba(139, 92, 246, 0.15);
 }
 
@@ -151,7 +126,8 @@
 }
 
 .form-input.error:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1),
+  box-shadow:
+    0 0 0 3px rgba(239, 68, 68, 0.1),
     0 4px 12px rgba(239, 68, 68, 0.15);
 }
 
@@ -307,16 +283,6 @@
 
   .form-header h1 {
     font-size: 1.75rem;
-  }
-
-  .logo-icon {
-    width: 56px;
-    height: 56px;
-  }
-
-  .logo-icon::after {
-    width: 20px;
-    height: 20px;
   }
 }
 
