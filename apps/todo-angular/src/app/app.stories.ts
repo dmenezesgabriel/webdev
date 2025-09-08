@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
+import { CardComponent } from './components/card/card.component';
 
 const meta: Meta<AppComponent> = {
   title: 'App',
@@ -11,7 +12,7 @@ const meta: Meta<AppComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [SignUpComponent, HeaderComponent],
+      declarations: [SignUpComponent, HeaderComponent, CardComponent],
       imports: [ReactiveFormsModule],
     }),
   ],

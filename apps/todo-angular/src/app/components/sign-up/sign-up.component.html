@@ -1,11 +1,8 @@
-<div class="form-container">
-  <div class="form-card">
-    <div class="form-header">
-
-      <h1>Create Account</h1>
-      <p>Join us today and get started with your journey</p>
-    </div>
-
+<app-card
+  title="Create Account"
+  subtitle="Join us today and get started with your journey"
+>
+  <div card-content>
     <form
       class="signup-form"
       [formGroup]="signUpForm"
@@ -16,12 +13,11 @@
         <input
           type="text"
           id="name"
-          formControlName="name"
           placeholder="Enter your full name"
           class="form-input"
+          formControlName="name"
           [class.error]="signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched"
         />
-
         <div
           class="error-message"
           *ngIf="signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched"
@@ -30,11 +26,10 @@
             Name is required
           </span>
           <span *ngIf="signUpForm.get('name')?.errors?.['minlength']">
-            Name must be at least 2 characters
+            Name must be at least 3 characters
           </span>
         </div>
       </div>
-
       <div class="form-group">
         <label for="email">Email Address</label>
         <input
@@ -45,7 +40,6 @@
           formControlName="email"
           [class.error]="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched"
         />
-
         <div
           class="error-message"
           *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched"
@@ -54,11 +48,10 @@
             Email is required
           </span>
           <span *ngIf="signUpForm.get('email')?.errors?.['email']">
-            ePlease enter a valid email
+            Please enter a valid email
           </span>
         </div>
       </div>
-
       <div class="form-group">
         <label for="password">Password</label>
         <input
@@ -69,7 +62,6 @@
           class="form-input"
           [class.error]="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"
         />
-
         <div
           class="error-message"
           *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"
@@ -82,50 +74,53 @@
           </span>
         </div>
       </div>
-
       <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
+        <label for="confirm-password">Confirm Password</label>
         <input
           type="password"
-          id="confirmPassword"
+          id="confirm-password"
           formControlName="confirmPassword"
           placeholder="Confirm your password"
           class="form-input"
-          [class.error]="(signUpForm.get('confirmPassword')?.invalid || signUpForm.errors?.['passwordMismatch']) && signUpForm.get('confirmPassword')?.touched"
+          [class.error]="signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched"
         />
         <div
           class="error-message"
-          *ngIf="(signUpForm.get('confirmPassword')?.invalid || signUpForm.errors?.['passwordMismatch']) && signUpForm.get('confirmPassword')?.touched"
+          *ngIf="signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched"
         >
+          <span *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']">
+            Confirm Password is required
+          </span>
           <span
-            *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']">Please
-            confirm your password</span>
-          <span
-            *ngIf="signUpForm.errors?.['passwordMismatch'] && !signUpForm.get('confirmPassword')?.errors?.['required']"
-          >Passwords do not match</span>
+            *ngIf="signUpForm.get('confirmPassword')?.errors?.['mustMatch']">
+            Passwords do not match
+          </span>
         </div>
       </div>
 
       <button
         type="submit"
         class="submit-btn"
-        [disabled]="signUpForm.invalid"
-        [class.disabled]="signUpForm.invalid"
+        [disabled]="signUpForm.invalid || isSubmitting"
+        [class.disabled]="signUpForm.invalid || isSubmitting"
       >
         <span *ngIf="!isSubmitting">Get Started</span>
         <span
           *ngIf="isSubmitting"
           class="loading"
-        >Creating Account...</span>
-
+        >Signing up...</span>
       </button>
     </form>
-
+  </div>
+  <div card-footer>
     <div class="form-footer">
-      <p>Already have an account? <a
+      <p>
+        Already have an account?
+        <a
           href="#"
           class="login-link"
-        >Sign In</a></p>
+        >Sign In</a>
+      </p>
     </div>
   </div>
-</div>
+</app-card>

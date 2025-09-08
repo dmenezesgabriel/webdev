@@ -5,7 +5,11 @@ const config: StorybookConfig = {
   addons: ['@storybook/addon-docs'],
   framework: {
     name: '@storybook/angular',
-    options: {},
+    options: {
+      stylePreprocessorOptions: {
+        includePaths: ['src'],
+      },
+    },
   },
 };
 export default config;

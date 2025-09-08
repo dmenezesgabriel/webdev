@@ -1,6 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up.component';
+import { CardComponent } from '../card/card.component';
 
 const meta: Meta<SignUpComponent> = {
   title: 'Auth/SignUp',
@@ -9,6 +10,7 @@ const meta: Meta<SignUpComponent> = {
   decorators: [
     moduleMetadata({
       imports: [ReactiveFormsModule],
+      declarations: [CardComponent],
     }),
   ],
 

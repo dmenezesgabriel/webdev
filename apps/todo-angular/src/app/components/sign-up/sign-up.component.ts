@@ -35,7 +35,7 @@ export class SignUpComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
     },
-    { validators: [passwordMatchValidator] }
+    { validators: [passwordMatchValidator] },
   );
 
   onSubmit(event: Event) {
