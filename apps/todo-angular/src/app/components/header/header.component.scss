@@ -1,32 +1,31 @@
 /* src/app/components/header/header.component.css */
+@import "../../../styles/variables";
+
 header {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1rem 4rem; /* Adjusted padding for a wider common header */
-  background: rgba(17, 24, 39, 0.8);
+  gap: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-xxxxl);
+  background: var(--card-bg-dark);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(75, 85, 99, 0.3);
-  border-radius: 0; /* Remove border-radius */
+  border: 1px solid var(--border-color);
+  border-radius: 0;
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.05);
-  color: #fff;
-  width: 100%; /* Set to full width */
-  position: fixed; /* Fix the header to the top of the viewport */
+  color: var(--text-primary);
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 10; /* Ensure the header is on top of other content */
-  animation: none; /* Remove the animation */
-
-  /* Add border-bottom to create a separation line */
+  z-index: 10;
+  animation: none;
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* Remove the ::before pseudo-element */
 header::before {
   content: none;
 }
@@ -35,8 +34,8 @@ header img {
   width: 56px;
   height: 56px;
   object-fit: contain;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #10b981);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--purple), var(--blue), var(--green));
   box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
   filter: none;
   position: relative;
@@ -51,14 +50,14 @@ header img::after {
   width: 20px;
   height: 20px;
   background: white;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   opacity: 0.9;
 }
 
 header h1 {
-  font-size: 1.75rem;
+  font-size: var(--spacing-xxl);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   margin: 0;
   background: linear-gradient(135deg, #ffffff, #e5e7eb);
   -webkit-background-clip: text;
@@ -69,54 +68,22 @@ header h1 {
 header p {
   margin: 0;
   font-size: 0.9375rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   font-weight: 400;
   line-height: 1.5;
-}
-
-/* No animation needed for a common top header */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 /* Responsive design for header */
 @media (max-width: 640px) {
   header {
-    padding: 1.5rem;
+    padding: var(--spacing-xl);
   }
 
   header h1 {
-    font-size: 1.5rem;
+    font-size: var(--spacing-xxl);
   }
 
   header p {
     font-size: 0.875rem;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    padding: 1.25rem;
-  }
-
-  header img {
-    width: 48px;
-    height: 48px;
-  }
-
-  header img::after {
-    width: 16px;
-    height: 16px;
-  }
-
-  header h1 {
-    font-size: 1.375rem;
   }
 }

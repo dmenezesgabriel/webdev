@@ -1,3 +1,5 @@
+@import "./styles/_variables.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -18,8 +20,8 @@ body {
     "Helvetica Neue",
     sans-serif;
   line-height: 1.6;
-  color: #fff;
-  background: #0a0a0a;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   min-height: 100vh;
   overflow-x: hidden;
 }
