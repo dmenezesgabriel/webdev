@@ -1,0 +1,85 @@
+<div class="form-container">
+  <div class="form-card">
+    <div class="form-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your account and continue your journey</p>
+    </div>
+
+    <form
+      class="signin-form"
+      [formGroup]="signInForm"
+      (ngSubmit)="onSubmit($event)"
+    >
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          class="form-input"
+          formControlName="email"
+          [class.error]="signInForm.get('email')?.invalid && signInForm.get('email')?.touched"
+        />
+
+        <div
+          class="error-message"
+          *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.touched"
+        >
+          <span *ngIf="signInForm.get('email')?.errors?.['required']">
+            Email is required
+          </span>
+          <span *ngIf="signInForm.get('email')?.errors?.['email']">
+            Please enter a valid email
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+          class="form-input"
+          [class.error]="signInForm.get('password')?.invalid && signInForm.get('password')?.touched"
+        />
+
+        <div
+          class="error-message"
+          *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched"
+        >
+          <span *ngIf="signInForm.get('password')?.errors?.['required']">
+            Password is required
+          </span>
+          <span *ngIf="signInForm.get('password')?.errors?.['minlength']">
+            Password must be at least 6 characters
+          </span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="signInForm.invalid"
+        [class.disabled]="signInForm.invalid"
+      >
+        <span *ngIf="!isSubmitting">Sign In</span>
+        <span
+          *ngIf="isSubmitting"
+          class="loading"
+        >Signing In...</span>
+      </button>
+    </form>
+
+    <div class="form-footer">
+      <p>
+        Don't have an account?
+        <a
+          href="#"
+          class="login-link"
+        >Sign Up</a>
+      </p>
+    </div>
+  </div>
+</div>
