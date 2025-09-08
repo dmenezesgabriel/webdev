@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up.component';
-import { CardComponent } from '../../components/card/card.component';
+import { CardComponent } from '../../shared/card/card.component';
 
 const meta: Meta<SignUpComponent> = {
   title: 'Auth/SignUp',
