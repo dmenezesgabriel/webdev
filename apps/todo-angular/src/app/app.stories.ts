@@ -1,15 +1,12 @@
 import {
   applicationConfig,
   moduleMetadata,
-  type AngularRenderer,
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
 
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { CardComponent } from './shared/card/card.component';
 
 import { provideRouter, RouterModule } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
