@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../core/services/user.service';
+import type { UserCredentials } from '../../core/models/api';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,7 +12,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class SignInComponent {
   isSubmitting = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+  ) {}
 
   signInForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -23,10 +28,18 @@ export class SignInComponent {
     if (this.signInForm.valid) {
       this.isSubmitting = true;
 
-      setTimeout(() => {
-        console.log('Form submitted: ', this.signInForm.value);
-        this.isSubmitting = false;
-      }, 1500);
+      const credentials = this.signInForm.value as UserCredentials;
+
+      this.userService.loginUser(credentials).subscribe({
+        next: (response) => {
+          console.log('Login successful: ', response);
+          this.isSubmitting = false;
+        },
+        error: (error) => {
+          console.log('Login failed', error);
+          this.isSubmitting = false;
+        },
+      });
     } else {
       Object.keys(this.signInForm.controls).forEach((key) => {
         this.signInForm.get(key)?.markAllAsTouched();

@@ -15,7 +15,7 @@ const meta: Meta<SignInComponent> = {
   ],
 
   // argTypes: {
-  //   formSubmit: { action: 'formSubmit' },
+  //   formSubmit: { action: 'formSubmit' }, //event emitter
   // },
 };
 

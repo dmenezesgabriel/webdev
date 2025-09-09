@@ -15,6 +15,9 @@ EXCLUDE_PATTERNS=(
   "tsconfig.app.json"
   "tsconfig.spec.json"
   "stories"
+  ".stories.ts"
+  ".css"
+  "angular.json"
 )
 
 # --- Argument Validation ---

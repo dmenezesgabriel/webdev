@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Output } from '@angular/core';
 import { FormBuilder, Validators, type AbstractControl } from '@angular/forms';
-import { EventEmitter } from '@angular/core';
+import { UserService } from '../../core/services/user.service';
+import { Router } from '@angular/router';
+import type { NewUser } from '../../core/models/api';
 
 function passwordMatchValidator(control: AbstractControl) {
   const password = control.get('password');
@@ -24,9 +26,11 @@ function passwordMatchValidator(control: AbstractControl) {
 export class SignUpComponent {
   isSubmitting = false;
 
-  @Output() formSubmit = new EventEmitter();
-
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+  ) {}
 
   signUpForm = this.fb.group(
     {
@@ -44,17 +48,23 @@ export class SignUpComponent {
     if (this.signUpForm.valid) {
       this.isSubmitting = true;
 
-      // mock
-      setTimeout(() => {
-        console.log('Form submitted: ', this.signUpForm.value);
-        this.isSubmitting = false;
-      }, 1500);
+      const newUser = this.signUpForm.value as NewUser;
+
+      this.userService.registerUser(newUser).subscribe({
+        next: (response) => {
+          console.log('User registered successfully: ', response);
+          this.isSubmitting = false;
+          this.router.navigate(['/sign-in']);
+        },
+        error: (error) => {
+          console.error('Registration failed: ', error);
+          this.isSubmitting = false;
+        },
+      });
     } else {
       Object.keys(this.signUpForm.controls).forEach((key) => {
         this.signUpForm.get(key)?.markAllAsTouched;
       });
     }
-
-    this.formSubmit.emit(JSON.stringify(this.signUpForm.value)); // storybook action
   }
 }

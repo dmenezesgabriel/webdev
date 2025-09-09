@@ -14,9 +14,9 @@ const meta: Meta<SignUpComponent> = {
     }),
   ],
 
-  argTypes: {
-    formSubmit: { action: 'formSubmit' },
-  },
+  // argTypes: {
+  //   formSubmit: { action: 'formSubmit' }, //event emitter
+  // },
 };
 
 export default meta;
