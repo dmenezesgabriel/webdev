@@ -18,6 +18,7 @@ EXCLUDE_PATTERNS=(
   ".stories.ts"
   ".css"
   "angular.json"
+  ".spec.ts"
 )
 
 # --- Argument Validation ---
