@@ -1,10 +1,21 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import {
+  applicationConfig,
+  moduleMetadata,
+  type AngularRenderer,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './shared/header/header.component';
 import { CardComponent } from './shared/card/card.component';
+
+import { provideRouter, RouterModule } from '@angular/router';
+import { importProvidersFrom } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app-routing.module';
 
 const meta: Meta<AppComponent> = {
   title: 'App',
@@ -13,7 +24,32 @@ const meta: Meta<AppComponent> = {
   decorators: [
     moduleMetadata({
       declarations: [SignUpComponent, HeaderComponent, CardComponent],
-      imports: [ReactiveFormsModule],
+      imports: [
+        ReactiveFormsModule,
+        RouterModule.forChild([
+          {
+            path: 'iframe.html',
+            redirectTo: '/sign-up',
+            pathMatch: 'full',
+          },
+        ]),
+      ],
+    }),
+    applicationConfig({
+      providers: [
+        provideRouter([
+          {
+            path: 'iframe.html',
+            redirectTo: '/sign-up',
+            pathMatch: 'full',
+          },
+        ]),
+        importProvidersFrom(
+          ReactiveFormsModule,
+          AppRoutingModule,
+          CommonModule,
+        ),
+      ],
     }),
   ],
 };
