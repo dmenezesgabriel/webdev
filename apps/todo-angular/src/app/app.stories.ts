@@ -13,6 +13,8 @@ import { importProvidersFrom } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import { UserService } from './core/services/user.service';
+import { provideHttpClient } from '@angular/common/http';
 
 const meta: Meta<AppComponent> = {
   title: 'App',
@@ -34,6 +36,8 @@ const meta: Meta<AppComponent> = {
     }),
     applicationConfig({
       providers: [
+        UserService,
+        provideHttpClient(),
         provideRouter([
           {
             path: 'iframe.html',
