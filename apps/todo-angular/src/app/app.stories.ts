@@ -23,7 +23,7 @@ const meta: Meta<AppComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [SignUpComponent, HeaderComponent, CardComponent],
+      declarations: [HeaderComponent],
       imports: [
         ReactiveFormsModule,
         RouterModule.forChild([
