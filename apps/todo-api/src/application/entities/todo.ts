@@ -1,23 +1,19 @@
 import { randomUUID } from "node:crypto";
 
 export interface TodoProps {
-  id?: string;
   title: string;
   userId: string;
-  completed?: boolean;
+  completedAt?: Date | null;
+  createdAt?: Date | null;
 }
 
 export class Todo {
   private _id: string;
-  private _title: string;
-  private _completed: boolean;
-  private _userId: string;
+  props: TodoProps;
 
-  constructor(props: TodoProps) {
-    this._id = props.id ?? randomUUID();
-    this._title = props.title;
-    this._completed = props.completed ?? false;
-    this._userId = props.userId;
+  constructor(props: TodoProps, id?: string) {
+    this._id = id ?? randomUUID();
+    this.props = { ...props, createdAt: props.createdAt ?? new Date() };
   }
 
   public get id() {
@@ -25,22 +21,25 @@ export class Todo {
   }
 
   public get title() {
-    return this._title;
+    return this.props.title;
   }
 
   public set title(value: string) {
-    this._title = value;
-  }
-
-  public get competed() {
-    return this._completed;
-  }
-
-  public set completed(value: boolean) {
-    this._completed = value;
+    this.props.title = value;
   }
 
   public get userId() {
-    return this._userId;
+    return this.props.userId;
+  }
+
+  public get completedAt() {
+    return this.props.completedAt;
+  }
+
+  public complete() {
+    this.props.completedAt = new Date();
+  }
+  public get createdAt() {
+    return this.props.createdAt;
   }
 }

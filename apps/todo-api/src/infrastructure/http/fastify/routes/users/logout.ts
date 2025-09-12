@@ -8,5 +8,7 @@ export async function logout(request: FastifyRequest, reply: FastifyReply) {
     secure: true,
   });
 
-  return reply.status(200).send({ message: "Logged out successfully" });
+  return reply
+    .status(200)
+    .send({ data: { message: "Logged out successfully" } });
 }

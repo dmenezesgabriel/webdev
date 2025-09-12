@@ -22,6 +22,8 @@ export async function refreshToken(
     { sign: { sub: request.user.sub, expiresIn: "7d" } }
   );
 
+  const response = { data: { token } };
+
   reply
     .setCookie("refreshToken", refreshToken, {
       path: "/",
@@ -30,5 +32,5 @@ export async function refreshToken(
       httpOnly: true,
     })
     .status(200)
-    .send({ token });
+    .send(response);
 }

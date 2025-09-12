@@ -31,6 +31,8 @@ export async function authenticate(
       { sign: { sub: user.id, expiresIn: "7d" } }
     );
 
+    const response = { data: { token } };
+
     reply
       .setCookie("refreshToken", refreshToken, {
         path: "/",
@@ -39,7 +41,7 @@ export async function authenticate(
         httpOnly: true,
       })
       .status(200)
-      .send({ token });
+      .send(response);
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {
       return reply.status(400).send({ message: err.message });

@@ -19,6 +19,6 @@ export class CreateTodoUseCase {
 
     const todo = new Todo({ title, userId });
     await this.todoRepository.create(todo);
-    return todo;
+    return { todo };
   }
 }

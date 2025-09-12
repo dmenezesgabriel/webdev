@@ -13,7 +13,18 @@ import { errorHandler } from "./error-handler";
 import { todoRoutes } from "./routes/todos/todos-routes";
 import { userRoutes } from "./routes/users/users-routes";
 
-export const app = Fastify({ logger: true });
+const loggerConfig = {
+  development: {
+    transport: {
+      target: "pino-pretty",
+    },
+  },
+};
+
+export const app = Fastify({
+  logger: loggerConfig["development"],
+  disableRequestLogging: true,
+});
 
 app.register(cors, { origin: true });
 app.register(fastifySwagger);

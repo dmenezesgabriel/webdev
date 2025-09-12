@@ -11,6 +11,6 @@ export class ListTodosUseCase {
     const user = await this.userRepository.findById(userId);
     if (!user) throw new Error("User not found");
 
-    return this.todoRepository.findAllByUser(userId);
+    return { todos: await this.todoRepository.findAllByUser(userId) };
   }
 }

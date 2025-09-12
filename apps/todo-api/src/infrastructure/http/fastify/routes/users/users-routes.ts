@@ -16,6 +16,10 @@ export async function userRoutes(app: FastifyInstance) {
   app.patch("/token/refresh", refreshToken);
   app.post("/sessions/logout", logout);
 
-  app.get("/users", { onRequest: [verifyUserRole("ADMIN")] }, listUsers);
+  app.get(
+    "/users",
+    { onRequest: [verifyJWT, verifyUserRole("ADMIN")] },
+    listUsers
+  );
   app.get("/me", { onRequest: [verifyJWT] }, profile);
 }

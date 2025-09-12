@@ -1,30 +1,24 @@
 import { randomUUID } from "node:crypto";
 
-export interface UserProps {
-  id?: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
 export enum Role {
   ADMIN = "ADMIN",
   USER = "USER",
 }
 
+export interface UserProps {
+  name: string;
+  email: string;
+  password: string;
+  role?: Role;
+}
+
 export class User {
   private _id: string;
-  private _name: string;
-  private _email: string;
-  private _password: string;
-  private _role: Role;
+  private props: UserProps;
 
-  constructor(props: UserProps) {
-    this._id = props.id ?? randomUUID();
-    this._name = props.name;
-    this._email = props.email;
-    this._password = props.password;
-    this._role = Role.USER;
+  constructor(props: UserProps, id?: string) {
+    this._id = id ?? randomUUID();
+    this.props = { ...props, role: props.role ?? Role.USER };
   }
 
   public get id() {
@@ -32,26 +26,26 @@ export class User {
   }
 
   public get name() {
-    return this._name;
+    return this.props.name;
   }
 
   public set name(value: string) {
-    this._name = value;
+    this.props.name = value;
   }
 
   public get email() {
-    return this._email;
+    return this.props.email;
   }
 
   public get password() {
-    return this._password;
+    return this.props.password;
   }
 
   public set password(value: string) {
-    this._password = value;
+    this.props.password = value;
   }
 
   public get role() {
-    return this._role;
+    return this.props.role;
   }
 }

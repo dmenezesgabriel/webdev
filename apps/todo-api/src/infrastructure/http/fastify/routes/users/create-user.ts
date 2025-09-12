@@ -2,6 +2,7 @@ import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
 import { UserAlreadyExistsError } from "@/application/use-cases/error/user-already-exists-error";
+import { UserPresenter } from "@/infrastructure/http/presenters/user";
 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
   const bodySchema = z.object({
@@ -14,9 +15,17 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
 
   try {
     const createUserUseCase = request.diScope.resolve("createUserUseCase");
-    const user = await createUserUseCase.execute({ name, email, password });
+    const { user } = await createUserUseCase.execute({
+      name,
+      email,
+      password,
+    });
 
-    reply.code(201).send(user);
+    const userPresentation = UserPresenter.present(user);
+
+    const response = { data: { user: userPresentation } };
+
+    reply.code(201).send(response);
   } catch (err) {
     if (err instanceof UserAlreadyExistsError) {
       return reply.status(409).send({ error: err.message });
