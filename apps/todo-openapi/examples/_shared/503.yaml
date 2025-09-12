@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "503"
+      message: Service unavailable
+      description: |
+        It was not possible to handle the request at this moment. Please, try again later.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/503

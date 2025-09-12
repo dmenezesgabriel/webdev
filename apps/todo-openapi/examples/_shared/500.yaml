@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "500"
+      message: Internal server error
+      description: |
+        Something went wrong, but it is not your fault. Please try again later.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/500

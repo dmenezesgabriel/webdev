@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "403"
+      message: Forbidden
+      description: |
+        You do not have access rights to the given operation.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403

@@ -1,0 +1,8 @@
+description: Invalid parameters
+content:
+  application/json:
+    schema:
+      $ref: "../schemas/_shared/messages.yaml"
+    examples:
+      "400":
+        $ref: "../examples/_shared/400.yaml"

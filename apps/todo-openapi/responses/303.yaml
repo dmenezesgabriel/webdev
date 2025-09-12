@@ -1,0 +1,14 @@
+description: |
+  See Other -  Redirection. The request response will be a redetection with
+  HTTP status code 303.
+  The resource location is specified on response Header(Location).
+headers:
+  Content-Location:
+    description: URI corresponding to the asynchronous processing status query.
+    schema:
+      type: string
+  Location:
+    description: |
+      URI corresponding to the query of the element already processed
+      asynchronously
+    schema: string

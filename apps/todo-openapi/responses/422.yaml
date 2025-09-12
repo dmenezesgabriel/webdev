@@ -1,0 +1,8 @@
+description: Unprocessable content
+content:
+  application/json:
+    schema:
+      $ref: "../schemas/_shared/messages.yaml"
+    examples:
+      "422":
+        $ref: "../examples/_shared/422.yaml"

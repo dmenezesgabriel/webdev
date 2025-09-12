@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "422"
+      message: Unprocessable content
+      description: |
+        The request was well-formed but was unable to be followed due to semantic error.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422

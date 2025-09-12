@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "405"
+      message: Method not allowed
+      description: |
+        This method is not allowed for the specified resource.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/405

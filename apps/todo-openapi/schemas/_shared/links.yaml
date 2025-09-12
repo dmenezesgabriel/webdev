@@ -1,0 +1,14 @@
+type: object
+description: |
+  Generic dictionary of links related to the current object instance.
+properties:
+  self:
+    description: Link to the current instance.
+    type: string
+    format: uri
+additionalProperties:
+  type: string
+  format: uri
+required:
+  - self
+readOnly: true

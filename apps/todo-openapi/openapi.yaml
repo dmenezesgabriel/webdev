@@ -1,49 +1,303 @@
 openapi: 3.1.0
 info:
   title: Todo API
+  description: >-
+    A simple REST API for managing users and todos with authentication.
   version: 1.0.0
-  description: A simple REST API for managing users and todos with authentication.
 
 servers:
   - url: http://localhost:3333
 
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
-  schemas:
-    User:
-      $ref: "./components/schemas/user.yaml"
-    Todo:
-      $ref: "./components/schemas/todo.yaml"
-
-  parameters:
-    userId:
-      $ref: "./components/parameters/userId.yaml"
-    todoId:
-      $ref: "./components/parameters/todoId.yaml"
+tags:
+  - name: Todos
+    description: User's todos.
+  - name: Users
+    description: Platform Users.
 
 paths:
   /users:
-    $ref: "./paths/users.yaml"
+    get:
+      tags:
+        - Users
+      summary: List all users
+      operationId: get/users
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/user"
+                  pagination:
+                    $ref: "#/components/schemas/pagination"
+                  links:
+                    allOf:
+                      - $ref: "#/components/schemas/links"
+                required:
+                  - data
+    #           examples:
+    #             200Users:
+    #               $ref: "#components/examples/200Users" # json file
+    #     "303":
+    #       $ref: "#/components/responses/303"
+    # options:
+    post:
+      tags:
+        - Users
+      summary: Create a new user
+      operationId: post/users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  format: email
+                  example: john@example.com
+                password:
+                  type: string
+                  example: 123456
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/user"
 
   /sessions:
-    $ref: "./paths/sessions.yaml"
+    post:
+      tags:
+        - Users
+      summary: Authenticate user (login)
+      operationId: post/sessions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: john@example.com
+                password:
+                  type: string
+                  example: 123456
+      responses:
+        "200":
+          description: "Successful login, return JWT + refresh token"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token: string
 
   /token/refresh:
-    $ref: "./paths/token-refresh.yaml"
-
+    patch:
+      tags:
+        - Users
+      summary: Refresh JWT using refresh token cookie
+      operationId: patch/token/refresh
+      responses:
+        "200":
+          description: New JWT issued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token: string
   /me:
-    $ref: "./paths/me.yaml"
+    get:
+      tags:
+        - Users
+      summary: Get current user profile
+      operationId: get/me
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Current user profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/user"
 
   /users/{userId}/todos:
-    $ref: "./paths/todos.yaml"
+    parameters:
+      - $ref: "#/components/parameters/userId"
+
+    post:
+      tags:
+        - Todos
+      summary: Create a todo for a user
+      operationId: post/users/userId/todos
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                  required:
+                    - title
+      responses:
+        "201":
+          description: Todo created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/todo"
+    get:
+      tags:
+        - Todos
+      summary: List todos for a user
+      operationId: get/users/userId/todos
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: List of todos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/todo"
 
   /users/{userId}/todos/{todoId}:
-    $ref: "./paths/todo-by-id.yaml"
+    delete:
+      tags:
+        - Todos
+      summary: Delete a todo by id
+      operationId: delete/users/userId/todos/todoId
+      parameters:
+        - $ref: "#/components/parameters/userId"
+        - $ref: "#/components/parameters/todoId"
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Todo deleted
 
   /sessions/logout:
-    $ref: "./paths/logout.yaml"
+    post:
+      tags:
+        - Users
+      summary: Clears the refresh token cookie, logging out the user.
+      operationId: post/sessions/logout
+      responses:
+        "200":
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Logged out successfully
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "./securitySchemes/bearerAuth.yaml"
+
+  schemas:
+    links:
+      $ref: "./schemas/_shared/links.yaml"
+    pagination:
+      $ref: "./schemas/_shared/pagination.yaml"
+    user:
+      $ref: "./schemas/user/user.yaml"
+    todo:
+      $ref: "./schemas/todo/todo.yaml"
+
+  parameters:
+    userId:
+      $ref: "./parameters/userId.yaml"
+    todoId:
+      $ref: "./parameters/todoId.yaml"
+
+  responses:
+    "200":
+      $ref: "./responses/200.yaml"
+    "201":
+      $ref: "./responses/201.yaml"
+    "202":
+      $ref: "./responses/202.yaml"
+    "204":
+      $ref: "./responses/204.yaml"
+    "206":
+      $ref: "./responses/206.yaml"
+    "207":
+      $ref: "./responses/200.yaml"
+    "303":
+      $ref: "./responses/303.yaml"
+    "304":
+      $ref: "./responses/304.yaml"
+    "400":
+      $ref: "./responses/400.yaml"
+    "401":
+      $ref: "./responses/401.yaml"
+    "403":
+      $ref: "./responses/403.yaml"
+    "404":
+      $ref: "./responses/404.yaml"
+    "405":
+      $ref: "./responses/405.yaml"
+    "422":
+      $ref: "./responses/422.yaml"
+    "500":
+      $ref: "./responses/500.yaml"
+    "503":
+      $ref: "./responses/503.yaml"

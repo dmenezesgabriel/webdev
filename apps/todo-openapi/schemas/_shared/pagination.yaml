@@ -1,0 +1,49 @@
+type: object
+description: |
+  Object containing information for paginated collections.
+properties:
+  links:
+    type: object
+    properties:
+      first:
+        type: string
+        format: uri
+        description: Link to first page.
+      last:
+        type: string
+        format: uri
+        description: Link to last page.
+      next:
+        type: string
+        format: uri
+        description: Link to next page.
+      previous:
+        type: string
+        format: uri
+        description: Link to previous page.
+    required:
+      - first
+      - last
+  page:
+    type: integer
+    minimum: 1
+    description: Current page.
+  totalPages:
+    type: integer
+    minimum: 1
+    description: Number of pages that can be requested.
+  totalRecords:
+    type: integer
+    minimum: 1
+    description: Total records that can be retrieved.
+  pageSize:
+    type: integer
+    minimum: 1
+    description: Amount of records in the current page.
+required:
+  - links
+  - page
+  - totalPages
+  - totalRecords
+  - pageSize
+readOnly: true

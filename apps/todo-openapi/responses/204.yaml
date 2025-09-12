@@ -1,0 +1,8 @@
+description: |
+  The resource has been successfully updated, but no content is going to be
+  returned.
+headers:
+  Content-Location:
+    description: The updated content URI
+    schema:
+      type: string

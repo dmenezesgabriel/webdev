@@ -1,0 +1,22 @@
+type: object
+properties:
+  code:
+    description: Code to be exhibited
+    type: string
+  message:
+    description: Message to be exhibited
+    type: string
+  description:
+    description: Additional information regarding the given message
+    type: string
+  reference:
+    description: Reference link for additional information
+    type: string
+  fields:
+    description: Parameters to be validated
+    type: array
+    items:
+      $ref: "../../schemas/_shared/field.yaml"
+required:
+  - code
+  - message

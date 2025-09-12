@@ -1,0 +1,6 @@
+value:
+  messages:
+    - code: "400"
+      message: Invalid parameters
+      description: It was not possible to parse the given request.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400

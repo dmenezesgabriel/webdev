@@ -1,0 +1,8 @@
+description: The execution was successful and returned the requested data.
+  -- If it is a unique resource, it will be represented in the output.
+  -- If the resource is a collection, every element will be returned.
+headers:
+  Content-Location:
+    description: URI for the current request.
+    schema:
+      type: string

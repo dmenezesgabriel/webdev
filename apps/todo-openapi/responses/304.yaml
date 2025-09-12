@@ -1,0 +1,10 @@
+description: |
+  The resource was not updated (the cached content have been returned).
+  Only used by services with caching capabilities.
+headers:
+  Content-Location:
+    description: |
+      The resource was not updated (the cached content have been returned).
+      Only used by services with caching capabilities.
+    schema:
+      type: string

@@ -1,5 +1,7 @@
-name: userId
+name: todoId
 in: path
+description: >-
+  The unique ID of a todo.
 required: true
 schema:
   type: string

@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "401"
+      message: Unauthorized
+      description: |
+        You have to be authenticated in order to perform this operation.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401

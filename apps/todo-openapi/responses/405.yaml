@@ -1,0 +1,8 @@
+description: Method not allowed
+content:
+  application/json:
+    schema:
+      $ref: "../schemas/_shared/messages.yaml"
+    examples:
+      "405":
+        $ref: "../examples/_shared/405.yaml"

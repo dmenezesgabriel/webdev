@@ -1,0 +1,11 @@
+type: object
+properties:
+  field:
+    description: Field name
+    type: string
+  message:
+    description: Field description
+    type: string
+  value:
+    description: Field value
+    type: string

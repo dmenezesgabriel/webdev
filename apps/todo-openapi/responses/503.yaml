@@ -1,0 +1,8 @@
+description: Service unavailable
+content:
+  application/json:
+    schema:
+      $ref: "../schemas/_shared/messages.yaml"
+    examples:
+      "503":
+        $ref: "../examples/_shared/503.yaml"

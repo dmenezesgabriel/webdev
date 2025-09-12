@@ -1,0 +1,6 @@
+description: The resource requested via POST was partially successful
+headers:
+  Content-Location:
+    description: URI of the created item.
+    schema:
+      type: string

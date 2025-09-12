@@ -1,0 +1,9 @@
+description: |
+  The resource is going to be created asynchronously. A task resource must be
+  returned.
+headers:
+  Content-Location:
+    description: |
+      A task resource URI which returns the status of the creation process.
+    schema:
+      type: string

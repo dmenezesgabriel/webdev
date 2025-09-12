@@ -1,0 +1,7 @@
+description: |
+  The HTTP request has led to the creation of a resource.
+headers:
+  Content-Location:
+    description: URI for the created item.
+    schema:
+      type: string

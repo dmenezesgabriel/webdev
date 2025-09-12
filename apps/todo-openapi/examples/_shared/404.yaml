@@ -1,0 +1,7 @@
+value:
+  messages:
+    - code: "404"
+      message: Not found
+      description: |
+        It was not possible to find the requested resource.
+      reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403
