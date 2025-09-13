@@ -1,3 +1,8 @@
+---
+title: "Typescript TS2729"
+description: "Typescript error TS2729"
+---
+
 Angular Property is used before its initialization error
 
 ```ts
