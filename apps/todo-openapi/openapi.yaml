@@ -33,11 +33,11 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/user"
-                  pagination:
-                    $ref: "#/components/schemas/pagination"
-                  links:
-                    allOf:
-                      - $ref: "#/components/schemas/links"
+                  # pagination:
+                  #   $ref: "#/components/schemas/pagination"
+                  # links:
+                  #   allOf:
+                  #     - $ref: "#/components/schemas/links"
                 required:
                   - data
     #           examples:
@@ -174,13 +174,11 @@ paths:
             schema:
               type: object
               properties:
-                data:
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                  required:
-                    - title
+                title:
+                  type: string
+                  example: Buy Milk
+              required:
+                - title
       responses:
         "201":
           description: Todo created

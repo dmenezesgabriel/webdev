@@ -1,7 +1,7 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
-import { TodoPresenter } from "@/infrastructure/http/presenters/todo";
+import { TodoHTTPPresenter } from "@/infrastructure/http/presenters/todo";
 
 export async function createTodo(request: FastifyRequest, reply: FastifyReply) {
   const paramsSchema = z.object({
@@ -18,9 +18,9 @@ export async function createTodo(request: FastifyRequest, reply: FastifyReply) {
   const createTodoUseCase = request.diScope.resolve("createTodoUseCase");
   const { todo } = await createTodoUseCase.execute({ title, userId });
 
-  const todoPresentation = TodoPresenter.present(todo);
+  const todoPresentation = TodoHTTPPresenter.present(todo);
 
-  const response = { data: { todo: todoPresentation } };
+  const response = { data: todoPresentation };
 
   return reply.code(201).send(response);
 }

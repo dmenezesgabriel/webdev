@@ -1,6 +1,6 @@
 import type { User } from "@/application/entities/user";
 
-export class UserPresenter {
+export class UserHTTPPresenter {
   static present(user: User) {
     return {
       id: user.id,

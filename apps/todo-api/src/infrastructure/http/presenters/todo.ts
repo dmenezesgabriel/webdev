@@ -1,6 +1,6 @@
 import type { Todo } from "@/application/entities/todo";
 
-export class TodoPresenter {
+export class TodoHTTPPresenter {
   static present(todo: Todo) {
     return {
       id: todo.id,

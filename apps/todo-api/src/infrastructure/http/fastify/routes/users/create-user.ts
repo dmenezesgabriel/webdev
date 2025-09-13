@@ -2,7 +2,7 @@ import { type FastifyReply, type FastifyRequest } from "fastify";
 import { z } from "zod";
 
 import { UserAlreadyExistsError } from "@/application/use-cases/error/user-already-exists-error";
-import { UserPresenter } from "@/infrastructure/http/presenters/user";
+import { UserHTTPPresenter } from "@/infrastructure/http/presenters/user";
 
 export async function createUser(request: FastifyRequest, reply: FastifyReply) {
   const bodySchema = z.object({
@@ -21,9 +21,9 @@ export async function createUser(request: FastifyRequest, reply: FastifyReply) {
       password,
     });
 
-    const userPresentation = UserPresenter.present(user);
+    const userPresentation = UserHTTPPresenter.present(user);
 
-    const response = { data: { user: userPresentation } };
+    const response = { data: userPresentation };
 
     reply.code(201).send(response);
   } catch (err) {
