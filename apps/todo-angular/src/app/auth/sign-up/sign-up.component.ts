@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Output } from '@angular/core';
 import { FormBuilder, Validators, type AbstractControl } from '@angular/forms';
-import { UserService } from '../../core/services/user.service';
+import { UserService } from '../../core/user/user.service';
 import { Router } from '@angular/router';
-import type { NewUser } from '../../core/models/api';
+import type { NewUser } from '../../core/user/user.model';
 
 function passwordMatchValidator(control: AbstractControl) {
   const password = control.get('password');

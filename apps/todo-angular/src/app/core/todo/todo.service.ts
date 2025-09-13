@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { Observable } from 'rxjs';
-import type { TodoListResponse, TodoResponse } from '../core/models/api';
-import { AuthService } from '../auth/auth.service';
+import type { TodoListResponse, TodoResponse } from './todo.model';
+import { AuthTokenService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,13 @@ import { AuthService } from '../auth/auth.service';
 export class TodoService {
   baseUrl = 'http://localhost:3333';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private AuthTokenService: AuthTokenService
+  ) {}
 
   getTodos(): Observable<TodoListResponse> {
-    const token = this.authService.getToken();
+    const token = this.AuthTokenService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.get<TodoListResponse>(`${this.baseUrl}/todos`, {
@@ -22,7 +25,7 @@ export class TodoService {
   }
 
   addTodo(title: string): Observable<TodoResponse> {
-    const token = this.authService.getToken();
+    const token = this.AuthTokenService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.post<TodoResponse>(
@@ -33,7 +36,7 @@ export class TodoService {
   }
 
   toggleTodo(id: string): Observable<TodoResponse> {
-    const token = this.authService.getToken();
+    const token = this.AuthTokenService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.patch<TodoResponse>(
@@ -44,7 +47,7 @@ export class TodoService {
   }
 
   deleteTodo(id: string): Observable<void> {
-    const token = this.authService.getToken();
+    const token = this.AuthTokenService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.delete<void>(`${this.baseUrl}/todos/${id}`, { headers });

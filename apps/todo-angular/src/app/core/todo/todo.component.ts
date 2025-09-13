@@ -1,8 +1,8 @@
 import { Component, type OnInit } from '@angular/core';
-import type { Todo } from '../core/models/api';
+import type { Todo } from '../todo/todo.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from './todo.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class TodoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private todoService: TodoService,
-    router: Router
+    private route: ActivatedRoute
   ) {}
 
   newTodoForm = this.fb.group({
@@ -25,20 +25,8 @@ export class TodoComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.loadTodos();
-  }
-
-  loadTodos() {
-    this.isLoading = true;
-    this.todoService.getTodos().subscribe({
-      next: (response) => {
-        this.todos = response.data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Failed to load todos: ', err);
-        this.isLoading = false;
-      },
+    this.route.data.subscribe(({ todos }) => {
+      this.todos = todos;
     });
   }
 

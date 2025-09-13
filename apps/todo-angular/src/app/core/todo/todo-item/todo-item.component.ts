@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import type { Todo } from '../../core/models/api';
+import type { Todo } from '../todo.model';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -13,7 +13,6 @@ export class TodoItemComponent {
   @Output() toggle = new EventEmitter<string>();
 
   onToggle() {
-    console.log(this.todo.id);
     this.toggle.emit(this.todo.id);
   }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
+import { AuthTokenService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +7,13 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private AuthTokenService: AuthTokenService) {}
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+    return this.AuthTokenService.isLoggedIn();
   }
 
   logout(): void {
-    this.authService.logout();
+    this.AuthTokenService.logout();
   }
 }

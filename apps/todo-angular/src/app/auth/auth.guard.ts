@@ -7,17 +7,20 @@ import {
   type GuardResult,
   type MaybeAsync,
 } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthTokenService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private AuthTokenService: AuthTokenService,
+    private router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): MaybeAsync<GuardResult> {
-    if (this.authService.isLoggedIn()) {
+    if (this.AuthTokenService.isLoggedIn()) {
       return true;
     } else {
       this.router.navigate(['/sign-in']);

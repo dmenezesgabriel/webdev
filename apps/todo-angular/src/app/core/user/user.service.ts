@@ -6,7 +6,7 @@ import type {
   NewUser,
   User,
   UserCredentials,
-} from '../models/api';
+} from './user.model';
 
 @Injectable({
   providedIn: 'root',

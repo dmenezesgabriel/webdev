@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthTokenService {
   private readonly TOKEN_KEY = 'authToken';
 
   constructor(private router: Router) {}
