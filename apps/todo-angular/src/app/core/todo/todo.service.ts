@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import type { Observable } from 'rxjs';
 import type { TodoListResponse, TodoResponse } from './todo.model';
 import { AuthService } from '../../auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  baseUrl = 'http://localhost:3333';
+  private baseUrl = environment.todoApiBaseUrl;
 
   constructor(private http: HttpClient, private AuthService: AuthService) {}
 

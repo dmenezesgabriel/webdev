@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import type { NewUser, User } from '../core/user/user.model';
 import type { Observable } from 'rxjs';
 import type { AuthTokenResponse, LoginCredentials } from './auth.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'authToken';
-  private baseUrl = 'http://localhost:3333';
+  private baseUrl = environment.todoApiBaseUrl;
 
   constructor(private router: Router, private http: HttpClient) {}
 
