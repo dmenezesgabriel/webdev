@@ -15,3 +15,7 @@ It is a concept introduced by RxJS library to handle asynchronous data streams
 - Observables are great for managing events and streamed data whereas signals are better suited for managing application state
 - Signals can be converted to observables using `toObservable()` and observables can be converted to signals using `toSignal()`
 - Observables have no initial value, whereas signals always have an initial value
+
+## Angular HttpClient Observables
+
+HttpClient observables are short-lived by design. They emit a single value and then complete, which automatically triggers a cleanup process, preventing memory leaks.

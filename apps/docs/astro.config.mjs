@@ -46,6 +46,7 @@ export default defineConfig({
             { label: "Modules", slug: "notes/modules" },
             { label: "Services", slug: "notes/services" },
             { label: "Http Requests", slug: "notes/http-requests" },
+            { label: "Pipes", slug: "notes/pipes" },
             { label: "Typescript erros", slug: "notes/ts-errors" },
           ],
         },

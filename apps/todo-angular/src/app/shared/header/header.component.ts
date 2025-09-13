@@ -7,13 +7,11 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(private AuthService: AuthService) {}
+  isLoggedIn$ = this.authService.isLoggedIn$;
 
-  isLoggedIn(): boolean {
-    return this.AuthService.isLoggedIn();
-  }
+  constructor(private authService: AuthService) {}
 
   logout(): void {
-    this.AuthService.logout();
+    this.authService.logout();
   }
 }

@@ -2,6 +2,10 @@
 
 # --- Configuration ---
 EXCLUDE_PATTERNS=(
+  # Editor
+  ".vscode"
+  # Build
+  "dist"
   #  Dependencies
   "node_modules"
   # Images
@@ -28,8 +32,8 @@ EXCLUDE_PATTERNS=(
   ".spec.ts"
   ".test.ts"
   # Styles
-  # ".scss"
-  # ".css"
+  ".scss"
+  ".css"
   # Markdown
   ".md"
   ".mdx"

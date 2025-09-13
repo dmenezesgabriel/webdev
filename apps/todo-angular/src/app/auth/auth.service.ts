@@ -5,6 +5,7 @@ import type { NewUser, User } from '../core/user/user.model';
 import type { Observable } from 'rxjs';
 import type { AuthTokenResponse, LoginCredentials } from './auth.model';
 import { environment } from '../../environments/environment';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,9 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private readonly TOKEN_KEY = 'authToken';
   private baseUrl = environment.todoApiBaseUrl;
+  private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
+
+  isLoggedIn$ = this.loggedIn.asObservable();
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -20,10 +24,14 @@ export class AuthService {
   }
 
   loginUser(credentials: LoginCredentials): Observable<AuthTokenResponse> {
-    return this.http.post<AuthTokenResponse>(
-      `${this.baseUrl}/sessions`,
-      credentials
-    );
+    return this.http
+      .post<AuthTokenResponse>(`${this.baseUrl}/sessions`, credentials)
+      .pipe(
+        tap((response) => {
+          this.saveToken(response.data.token);
+          this.loggedIn.next(true);
+        })
+      );
   }
 
   saveToken(token: string) {
@@ -34,7 +42,7 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  isLoggedIn(): boolean {
+  hasToken(): boolean {
     return !!this.getToken();
   }
 

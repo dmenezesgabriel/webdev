@@ -9,7 +9,7 @@
   </div>
 
   <div class="header-links">
-    <ng-container *ngIf="isLoggedIn(); else showAuthLinks">
+    <ng-container *ngIf="isLoggedIn$ | async; else showAuthLinks">
       <a
         class="link-btn"
         (click)="logout()"
