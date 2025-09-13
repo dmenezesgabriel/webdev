@@ -1,7 +1,13 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import {
+  applicationConfig,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up.component';
 import { CardComponent } from '../../shared/card/card.component';
+import { provideHttpClient } from '@angular/common/http';
 
 const meta: Meta<SignUpComponent> = {
   title: 'Auth/SignUp',
@@ -12,6 +18,7 @@ const meta: Meta<SignUpComponent> = {
       imports: [ReactiveFormsModule],
       declarations: [CardComponent],
     }),
+    applicationConfig({ providers: [provideHttpClient()] }),
   ],
 
   // argTypes: {

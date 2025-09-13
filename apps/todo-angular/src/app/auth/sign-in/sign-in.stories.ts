@@ -1,7 +1,13 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import {
+  applicationConfig,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in.component';
 import { CardComponent } from '../../shared/card/card.component';
+import { provideHttpClient } from '@angular/common/http';
 
 const meta: Meta<SignInComponent> = {
   title: 'Auth/SignIn',
@@ -12,11 +18,8 @@ const meta: Meta<SignInComponent> = {
       imports: [ReactiveFormsModule],
       declarations: [CardComponent],
     }),
+    applicationConfig({ providers: [provideHttpClient()] }),
   ],
-
-  // argTypes: {
-  //   formSubmit: { action: 'formSubmit' }, //event emitter
-  // },
 };
 
 export default meta;

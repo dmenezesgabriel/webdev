@@ -9,18 +9,30 @@
   </div>
 
   <div class="header-links">
-    <a
-      [routerLink]="['/sign-in']"
-      class="link-btn"
-    >
-      Sign In
-    </a>
+    <ng-container *ngIf="isLoggedIn(); else showAuthLinks">
+      <a
+        class="link-btn"
+        (click)="logout()"
+      >
+        Logout
+      </a>
+    </ng-container>
 
-    <a
-      [routerLink]="['/sign-up']"
-      class="action-btn"
-    >
-      Sign Up
-    </a>
+
+    <ng-template #showAuthLinks>
+      <a
+        [routerLink]="['/sign-in']"
+        class="link-btn"
+      >
+        Sign In
+      </a>
+
+      <a
+        [routerLink]="['/sign-up']"
+        class="action-btn"
+      >
+        Sign Up
+      </a>
+    </ng-template>
   </div>
 </header>

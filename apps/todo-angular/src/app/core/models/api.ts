@@ -17,7 +17,7 @@ export interface UserCredentials {
 }
 
 export interface AuthTokenResponse {
-  token: string;
+  data: { token: string };
 }
 
 export interface Todo {
