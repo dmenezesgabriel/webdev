@@ -36,9 +36,10 @@ export class Todo {
     return this.props.completedAt;
   }
 
-  public complete() {
-    this.props.completedAt = new Date();
+  public toggleComplete() {
+    this.props.completedAt = this.props.completedAt ? null : new Date();
   }
+
   public get createdAt() {
     return this.props.createdAt;
   }

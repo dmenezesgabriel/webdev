@@ -11,6 +11,7 @@ import { ListUsersUseCase } from "@/application/use-cases/list-users";
 import { GetUserProfileUseCase } from "@/application/use-cases/profile";
 import { InMemoryTodoRepository } from "@/infrastructure/database/in-memory/repositories/in-memory-todo-repository";
 import { InMemoryUserRepository } from "@/infrastructure/database/in-memory/repositories/in-memory-user-repository";
+import { ToggleTodoCompletionUseCase } from "@/application/use-cases/toggle-todo-completion";
 
 declare module "@fastify/awilix" {
   interface Cradle {
@@ -21,6 +22,7 @@ declare module "@fastify/awilix" {
     listUsersUseCase: ListUsersUseCase;
     createTodoUseCase: CreateTodoUseCase;
     listTodosUseCase: ListTodosUseCase;
+    toggleTodoCompletionUseCase: ToggleTodoCompletionUseCase;
     deleteTodoUseCase: DeleteTodoUseCase;
 
     authenticateUseCase: AuthenticateUseCase;
@@ -67,6 +69,9 @@ export const containerPlugin = fp(async (app) => {
       },
       { lifetime: Lifetime.SCOPED }
     ),
+    toggleTodoCompletionUseCase: asFunction(({ todoRepository }) => {
+      return new ToggleTodoCompletionUseCase(todoRepository);
+    }),
     deleteTodoUseCase: asFunction(
       ({ userRepository, todoRepository }) => {
         return new DeleteTodoUseCase(todoRepository, userRepository);

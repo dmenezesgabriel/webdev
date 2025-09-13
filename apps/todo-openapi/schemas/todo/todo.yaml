@@ -8,3 +8,14 @@ properties:
     format: uuid
   title:
     type: string
+  completedAt:
+    type: string
+    format: date-time
+    nullable: true
+  createdAt:
+    type: string
+    format: date-time
+required:
+  - id
+  - userId
+  - title

@@ -5,8 +5,8 @@ export class TodoHTTPPresenter {
     return {
       id: todo.id,
       title: todo.title,
-      completed: todo.completedAt,
-      createdAt: todo.createdAt,
+      completedAt: todo.completedAt ?? null,
+      createdAt: todo.createdAt ?? null,
       userId: todo.userId,
     };
   }

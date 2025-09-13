@@ -26,20 +26,20 @@ export async function authenticate(
       { sign: { sub: user.id, expiresIn: "15m" } }
     );
 
-    const refreshToken = await reply.jwtSign(
-      { role: user.role },
-      { sign: { sub: user.id, expiresIn: "7d" } }
-    );
+    // const refreshToken = await reply.jwtSign(
+    //   { role: user.role },
+    //   { sign: { sub: user.id, expiresIn: "7d" } }
+    // );
 
     const response = { data: { token: accessToken } };
 
     reply
-      .setCookie("refreshToken", refreshToken, {
-        path: "/",
-        secure: true, // HTTPS
-        sameSite: true,
-        httpOnly: true,
-      })
+      // .setCookie("refreshToken", refreshToken, {
+      //   path: "/",
+      //   secure: true, // HTTPS
+      //   sameSite: true,
+      //   httpOnly: true,
+      // })
       .status(200)
       .send(response);
   } catch (err) {

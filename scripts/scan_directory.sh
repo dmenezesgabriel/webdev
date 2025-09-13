@@ -2,23 +2,37 @@
 
 # --- Configuration ---
 EXCLUDE_PATTERNS=(
+  #  Dependencies
   "node_modules"
-  ".vscode"
-  ".angular"
-  "__pycache__"
-  ".bak"
+  # Images
+  ".jpeg"
   ".png"
   ".svg"
   ".avif"
+  ".ico"
+  # config files
+  ".env"
+  ".editorconfig"
+  ".gitignore"
+  ".angular"
+  "angular.json"
   "package-lock.json"
   "tsconfig.json"
   "tsconfig.app.json"
   "tsconfig.spec.json"
+  # Storybook
+  ".storybook"
   "stories"
   ".stories.ts"
-  # ".css"
-  "angular.json"
+  # Tests
   ".spec.ts"
+  ".test.ts"
+  # Styles
+  # ".scss"
+  # ".css"
+  # Markdown
+  ".md"
+  ".mdx"
 )
 
 # --- Argument Validation ---

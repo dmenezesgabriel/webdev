@@ -220,6 +220,27 @@ paths:
         "204":
           description: Todo deleted
 
+  /todos/{todoId}/toggle:
+    patch:
+      tags:
+        - Todos
+      summary: Toggle a todo's completion status
+      operationId: patch/todos/{todoId}/toggle
+      parameters:
+        - $ref: "#/components/parameters/todoId"
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Todo toggled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/todo"
+
   /sessions/logout:
     post:
       tags:

@@ -20,6 +20,16 @@ export class InMemoryTodoRepository implements TodoRepository {
     );
   }
 
+  async update(todo: Todo): Promise<Todo> {
+    const index = this.todos.findIndex((todo) => todo.id === todo.id);
+
+    if (index !== -1) {
+      this.todos[index] = todo;
+    }
+
+    return todo;
+  }
+
   async delete(userId: string, todoId: string): Promise<void> {
     this.todos = this.todos.filter(
       (todo) => !(todo.userId === userId && todo.id === todoId)
