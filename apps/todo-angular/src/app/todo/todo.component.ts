@@ -42,6 +42,7 @@ export class TodoComponent implements OnInit {
   }
 
   addTodo() {
+    console.log('clicked');
     if (this.newTodoForm.valid) {
       const title = this.newTodoForm.value.title as string;
       this.todoService.addTodo(title).subscribe({

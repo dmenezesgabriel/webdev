@@ -1,0 +1,62 @@
+@import "../../styles/form-elements.css";
+
+.todo-form form {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.todo-form .form-input {
+  flex-grow: 1;
+}
+
+.loading-state,
+.empty-state {
+  text-align: center;
+  margin-top: var(--spacing-xxxl);
+  padding: var(--spacing-xxxl) 0;
+}
+
+.loading-state p {
+  color: var(--text-secondary);
+  font-size: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.loading-state p::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--text-secondary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.empty-state h2 {
+  color: var(--text-primary);
+  font-size: var(--spacing-xl);
+  margin-bottom: var(--spacing-xs);
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: var(--spacing-lg);
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--spacing-xxxl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}

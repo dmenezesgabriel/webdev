@@ -8,10 +8,47 @@
         [formGroup]="newTodoForm"
         (ngSubmit)="addTodo()"
       >
-
-
-
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="Add a new task"
+          class="form-input"
+          [class.error]="newTodoForm.get('title')?.invalid && newTodoForm.get('title')?.touched"
+        >
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="newTodoForm.invalid"
+        >Add Todo
+        </button>
       </form>
     </div>
+
+    <div
+      *ngIf="isLoading"
+      class="loading-state"
+    >
+      <p>Loading todos...</p>
+    </div>
+
+    <div
+      *ngIf="!isLoading && todos.length === 0"
+      class="empty-state"
+    >
+      <h2>No tasks found</h2>
+      <p>You're all caught up! Enjoy your day.</p>
+    </div>
+
+    <ul
+      *ngIf="!isLoading && todos.length >0"
+      class="todo-list"
+    >
+      <li *ngFor="let todo of todos">
+        <app-todo-item
+          [todo]="todo"
+          (delete)="deleteTodo($event)"
+        />
+      </li>
+    </ul>
   </div>
 </app-card>
