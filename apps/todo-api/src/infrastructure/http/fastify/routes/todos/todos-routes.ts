@@ -9,7 +9,7 @@ import { listTodos } from "./list-todos";
 export async function todoRoutes(app: FastifyInstance) {
   app.addHook("onRequest", verifyJWT);
 
-  app.post("/users/:userId/todos", createTodo);
-  app.get("/users/:userId/todos", listTodos);
-  app.delete("/users/:userId/todos/:todoId", deleteTodo);
+  app.post("/todos", createTodo);
+  app.get("/todos", listTodos);
+  app.delete("/todos/:todoId", deleteTodo);
 }

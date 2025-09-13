@@ -16,7 +16,7 @@ EXCLUDE_PATTERNS=(
   "tsconfig.spec.json"
   "stories"
   ".stories.ts"
-  ".css"
+  # ".css"
   "angular.json"
   ".spec.ts"
 )

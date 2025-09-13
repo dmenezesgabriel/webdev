@@ -16,7 +16,7 @@ export interface UserCredentials {
   password: string;
 }
 
-export interface AuthResponse {
+export interface AuthTokenResponse {
   token: string;
 }
 
@@ -24,4 +24,12 @@ export interface Todo {
   id: string;
   userId: string;
   title: string;
+}
+
+export interface TodoListResponse {
+  data: Todo[];
+}
+
+export interface TodoResponse {
+  data: Todo;
 }

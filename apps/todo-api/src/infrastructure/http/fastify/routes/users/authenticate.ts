@@ -21,9 +21,9 @@ export async function authenticate(
       password,
     });
 
-    const token = await reply.jwtSign(
+    const accessToken = await reply.jwtSign(
       { role: user.role },
-      { sign: { sub: user.id } }
+      { sign: { sub: user.id, expiresIn: "15m" } }
     );
 
     const refreshToken = await reply.jwtSign(
@@ -31,7 +31,7 @@ export async function authenticate(
       { sign: { sub: user.id, expiresIn: "7d" } }
     );
 
-    const response = { data: { token } };
+    const response = { data: { token: accessToken } };
 
     reply
       .setCookie("refreshToken", refreshToken, {

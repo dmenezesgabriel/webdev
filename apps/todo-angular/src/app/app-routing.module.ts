@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: '',
+    loadChildren: () => import('./todo/todo.module').then((m) => m.TodoModule),
+  },
 ];
 
 @NgModule({

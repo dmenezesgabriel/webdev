@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import type {
-  AuthResponse,
+  AuthTokenResponse,
   NewUser,
   User,
   UserCredentials,
@@ -20,10 +20,10 @@ export class UserService {
     return this.http.post<User>(`${this.baseUrl}/users`, userData);
   }
 
-  loginUser(credentials: UserCredentials): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(
+  loginUser(credentials: UserCredentials): Observable<AuthTokenResponse> {
+    return this.http.post<AuthTokenResponse>(
       `${this.baseUrl}/sessions`,
-      credentials,
+      credentials
     );
   }
 }

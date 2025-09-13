@@ -29,7 +29,7 @@ export class SignUpComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router,
+    private router: Router
   ) {}
 
   signUpForm = this.fb.group(
@@ -39,7 +39,7 @@ export class SignUpComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
     },
-    { validators: [passwordMatchValidator] },
+    { validators: [passwordMatchValidator] }
   );
 
   onSubmit(event: Event) {

@@ -156,15 +156,12 @@ paths:
                   data:
                     $ref: "#/components/schemas/user"
 
-  /users/{userId}/todos:
-    parameters:
-      - $ref: "#/components/parameters/userId"
-
+  /todos:
     post:
       tags:
         - Todos
       summary: Create a todo for a user
-      operationId: post/users/userId/todos
+      operationId: post/todos
       security:
         - bearerAuth: []
       requestBody:
@@ -193,7 +190,7 @@ paths:
       tags:
         - Todos
       summary: List todos for a user
-      operationId: get/users/userId/todos
+      operationId: get/todos
       security:
         - bearerAuth: []
       responses:
@@ -209,14 +206,13 @@ paths:
                     items:
                       $ref: "#/components/schemas/todo"
 
-  /users/{userId}/todos/{todoId}:
+  /todos/{todoId}:
     delete:
       tags:
         - Todos
       summary: Delete a todo by id
       operationId: delete/users/userId/todos/todoId
       parameters:
-        - $ref: "#/components/parameters/userId"
         - $ref: "#/components/parameters/todoId"
       security:
         - bearerAuth: []

@@ -3,11 +3,12 @@ import { z } from "zod";
 
 export async function deleteTodo(request: FastifyRequest, reply: FastifyReply) {
   const paramsSchema = z.object({
-    userId: z.uuid(),
     todoId: z.uuid(),
   });
 
-  const { userId, todoId } = paramsSchema.parse(request.params);
+  const { todoId } = paramsSchema.parse(request.params);
+  const userId = request.user.sub;
+
   const deleteTodoUseCase = request.diScope.resolve("deleteTodoUseCase");
   await deleteTodoUseCase.execute({ userId, todoId });
 

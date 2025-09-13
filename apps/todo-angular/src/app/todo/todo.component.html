@@ -1,0 +1,17 @@
+<app-card
+  title="Your Todos"
+  subtitle="Stay organized and productive with your daily tasks"
+>
+  <div card-content>
+    <div class="todo-form">
+      <form
+        [formGroup]="newTodoForm"
+        (ngSubmit)="addTodo()"
+      >
+
+
+
+      </form>
+    </div>
+  </div>
+</app-card>

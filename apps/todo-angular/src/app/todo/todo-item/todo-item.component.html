@@ -1,0 +1,18 @@
+<div class="form-group todo-item-group">
+  <div class="checkbox-container">
+    <input
+      type="checkbox"
+      class="todo-checkbox"
+    />
+    <span class="custom-checkbox"></span>
+  </div>
+  <p>
+    {{ todo.title }}
+  </p>
+  <button
+    class="delete-btn"
+    (click)="onDelete()"
+  >
+    Delete
+  </button>
+</div>
