@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../../core/user/user.service';
-import type { UserCredentials } from '../../core/user/user.model';
+import { AuthService } from '../auth.service';
+
 import { Router } from '@angular/router';
-import { AuthTokenService } from '../auth.service';
+import type { LoginCredentials } from '../auth.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,9 +16,8 @@ export class SignInComponent {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
     private router: Router,
-    private AuthTokenService: AuthTokenService
+    private authService: AuthService
   ) {}
 
   signInForm = this.fb.group({
@@ -32,12 +31,12 @@ export class SignInComponent {
     if (this.signInForm.valid) {
       this.isSubmitting = true;
 
-      const credentials = this.signInForm.value as UserCredentials;
+      const credentials = this.signInForm.value as LoginCredentials;
 
-      this.userService.loginUser(credentials).subscribe({
+      this.authService.loginUser(credentials).subscribe({
         next: (response) => {
           console.log('Login successful: ', response);
-          this.AuthTokenService.saveToken(response.data.token);
+          this.authService.saveToken(response.data.token);
           this.router.navigate(['/todos']);
           this.isSubmitting = false;
         },

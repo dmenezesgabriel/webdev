@@ -10,12 +10,3 @@ export interface NewUser {
   email: string;
   password: string;
 }
-
-export interface UserCredentials {
-  email: string;
-  password: string;
-}
-
-export interface AuthTokenResponse {
-  data: { token: string };
-}

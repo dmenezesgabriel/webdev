@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Output } from '@angular/core';
 import { FormBuilder, Validators, type AbstractControl } from '@angular/forms';
-import { UserService } from '../../core/user/user.service';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import type { NewUser } from '../../core/user/user.model';
 
@@ -28,7 +28,7 @@ export class SignUpComponent {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -50,7 +50,7 @@ export class SignUpComponent {
 
       const newUser = this.signUpForm.value as NewUser;
 
-      this.userService.registerUser(newUser).subscribe({
+      this.authService.registerUser(newUser).subscribe({
         next: (response) => {
           console.log('User registered successfully: ', response);
           this.isSubmitting = false;
