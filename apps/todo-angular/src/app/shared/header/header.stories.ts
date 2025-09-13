@@ -9,6 +9,7 @@ import { HeaderComponent } from './header.component';
 import { provideRouter, RouterModule } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
 import { AppRoutingModule } from '../../app-routing.module';
+import { provideHttpClient } from '@angular/common/http';
 
 const meta: Meta<HeaderComponent> = {
   title: 'Shared/Header',
@@ -28,6 +29,7 @@ const meta: Meta<HeaderComponent> = {
     }),
     applicationConfig({
       providers: [
+        provideHttpClient(),
         provideRouter([
           {
             path: 'iframe.html',

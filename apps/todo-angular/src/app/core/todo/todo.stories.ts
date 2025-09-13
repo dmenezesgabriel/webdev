@@ -7,7 +7,9 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoComponent } from './todo.component';
 import { provideHttpClient } from '@angular/common/http';
-import { CardComponent } from '../shared/card/card.component';
+import { CardComponent } from '../../shared/card/card.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 const meta: Meta<TodoComponent> = {
   title: 'Todo/Todos',
@@ -18,7 +20,17 @@ const meta: Meta<TodoComponent> = {
       imports: [ReactiveFormsModule],
       declarations: [CardComponent],
     }),
-    applicationConfig({ providers: [provideHttpClient()] }),
+    applicationConfig({
+      providers: [
+        provideHttpClient(),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({ todos: [] }),
+          },
+        },
+      ],
+    }),
   ],
 };
 
