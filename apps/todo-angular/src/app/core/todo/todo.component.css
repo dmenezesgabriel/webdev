@@ -1,5 +1,9 @@
 @import "../../../styles//form-elements.css";
 
+div[card-content] {
+  height: 500px;
+}
+
 .todo-form form {
   display: flex;
   gap: var(--spacing-sm);
@@ -52,10 +56,16 @@
   font-size: var(--spacing-lg);
 }
 
+.todo-list-container {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0px 10px;
+  margin-top: var(--spacing-xxxl);
+}
+
 .todo-list {
   list-style: none;
   padding: 0;
-  margin-top: var(--spacing-xxxl);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
