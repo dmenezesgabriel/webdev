@@ -63,7 +63,7 @@ export class SignUpComponent {
       });
     } else {
       Object.keys(this.signUpForm.controls).forEach((key) => {
-        this.signUpForm.get(key)?.markAllAsTouched;
+        this.signUpForm.get(key)?.markAllAsTouched();
       });
     }
   }

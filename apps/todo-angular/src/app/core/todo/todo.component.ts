@@ -3,7 +3,7 @@ import type { Todo } from '../todo/todo.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from './todo.service';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
+import { take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -30,18 +30,37 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  fetchTodos() {
+    this.isLoading = true;
+    this.todoService
+      .getTodos()
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => {
+          this.todos = response.data;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('Failed to fetch todos: ', err);
+          this.isLoading = false;
+        },
+      });
+  }
+
   addTodo() {
     if (this.newTodoForm.valid) {
       const title = this.newTodoForm.value.title as string;
-      this.todoService.addTodo(title).subscribe({
-        next: (response) => {
-          this.todos = [...this.todos, response.data];
-          this.newTodoForm.reset();
-        },
-        error: (err) => {
-          console.log('Failed to add todo: ', err);
-        },
-      });
+      this.todoService
+        .addTodo(title)
+        .pipe(tap(() => this.fetchTodos()))
+        .subscribe({
+          next: () => {
+            this.newTodoForm.reset();
+          },
+          error: (err) => {
+            console.log('Failed to add todo: ', err);
+          },
+        });
     }
   }
 
