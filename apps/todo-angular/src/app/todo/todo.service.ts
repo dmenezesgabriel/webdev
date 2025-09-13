@@ -32,6 +32,17 @@ export class TodoService {
     );
   }
 
+  toggleTodo(id: string): Observable<TodoResponse> {
+    const token = this.authService.getToken();
+    const headers = { Authorization: `Bearer ${token}` };
+
+    return this.http.patch<TodoResponse>(
+      `${this.baseUrl}/todos/${id}/toggle`,
+      {},
+      { headers }
+    );
+  }
+
   deleteTodo(id: string): Observable<void> {
     const token = this.authService.getToken();
     const headers = { Authorization: `Bearer ${token}` };

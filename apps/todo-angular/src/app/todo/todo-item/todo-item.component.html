@@ -1,11 +1,13 @@
 <div class="form-group todo-item-group">
-  <div class="checkbox-container">
+  <label class="checkbox-container">
     <input
       type="checkbox"
       class="todo-checkbox"
+      [checked]="!!todo.completedAt"
+      (change)="onToggle()"
     />
     <span class="custom-checkbox"></span>
-  </div>
+  </label>
   <p>
     {{ todo.title }}
   </p>

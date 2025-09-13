@@ -3,6 +3,7 @@ import type { Todo } from '../core/models/api';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from './todo.service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -42,7 +43,6 @@ export class TodoComponent implements OnInit {
   }
 
   addTodo() {
-    console.log('clicked');
     if (this.newTodoForm.valid) {
       const title = this.newTodoForm.value.title as string;
       this.todoService.addTodo(title).subscribe({
@@ -55,6 +55,22 @@ export class TodoComponent implements OnInit {
         },
       });
     }
+  }
+
+  toggleTodo(id: string) {
+    this.todoService
+      .toggleTodo(id)
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => {
+          this.todos = this.todos.map((todo) => {
+            return todo.id === id ? response.data : todo;
+          });
+        },
+        error: (err) => {
+          console.error('Failed to toggle todo: ', err);
+        },
+      });
   }
 
   deleteTodo(id: string) {

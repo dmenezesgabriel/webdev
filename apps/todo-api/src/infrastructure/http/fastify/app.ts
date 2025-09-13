@@ -26,7 +26,10 @@ export const app = Fastify({
   disableRequestLogging: true,
 });
 
-app.register(cors, { origin: true });
+app.register(cors, {
+  origin: "*",
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "HEAD"],
+});
 app.register(fastifySwagger);
 app.register(fastifySwaggerUi, {
   routePrefix: "/docs",
