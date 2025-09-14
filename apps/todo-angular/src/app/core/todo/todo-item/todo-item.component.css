@@ -1,5 +1,8 @@
+@import "../../../../styles/_form-elements.css";
+
 .todo-item-group {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-sm) var(--spacing-lg);
