@@ -23,6 +23,8 @@ export const Default: Story = {
       id: '1',
       title: 'Example Todo Item',
       userId: '1',
+      completedAt: null,
+      createdAt: new Date(),
     },
   },
 };
