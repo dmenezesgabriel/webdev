@@ -1,5 +1,13 @@
 import type { Preview } from '@storybook/angular';
 
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+
+import docJson from '../documentation.json';
+setCompodocJson(docJson);
+
+initialize();
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -9,6 +17,7 @@ const preview: Preview = {
       },
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;

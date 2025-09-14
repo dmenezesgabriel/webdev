@@ -91,8 +91,14 @@
           "options": {
             "configDir": ".storybook",
             "browserTarget": "todo-angular:build",
-            "compodoc": false,
-            "port": 6006
+            "compodoc": true,
+            "port": 6006,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ]
           }
         },
         "build-storybook": {
@@ -100,8 +106,13 @@
           "options": {
             "configDir": ".storybook",
             "browserTarget": "todo-angular:build",
-            "compodoc": false,
-            "outputDir": "storybook-static"
+            "outputDir": "storybook-static",
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ]
           }
         }
       }
