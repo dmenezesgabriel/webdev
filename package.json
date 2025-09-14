@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "bootstrap": "pnpm --filter openapi-spec-bundler build && pnpm i",
     "dev:docs": "pnpm --filter docs dev",
     "build:docs": "pnpm --filter docs... build",
     "prepreview:docs": "pnpm --filter docs build",
