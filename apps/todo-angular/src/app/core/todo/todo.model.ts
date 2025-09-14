@@ -2,8 +2,8 @@ export interface Todo {
   id: string;
   userId: string;
   title: string;
-  completedAt: Date | null;
-  createdAt: Date | undefined;
+  completedAt?: Date | null | undefined;
+  createdAt?: Date | undefined;
 }
 
 export interface TodoListResponse {
