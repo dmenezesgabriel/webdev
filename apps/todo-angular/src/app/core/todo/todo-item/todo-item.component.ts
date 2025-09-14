@@ -9,8 +9,8 @@ import { EventEmitter } from '@angular/core';
 })
 export class TodoItemComponent {
   @Input({ required: true }) todo!: Todo;
-  @Output() delete = new EventEmitter<string>();
   @Output() toggle = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<string>();
 
   onToggle() {
     this.toggle.emit(this.todo.id);

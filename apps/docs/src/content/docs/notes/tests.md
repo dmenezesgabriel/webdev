@@ -106,3 +106,4 @@ setupZoneTestEnv();
 ## References
 
 - [setting-up-jest-in-your-angular-16](https://medium.com/@philip.mutua/setting-up-jest-in-your-angular-16-project-3638ef65f3a3)
+- [Angular Unit Testing Crash Course - Make Your Project Bullet Proof](https://www.youtube.com/watch?v=V322hFii-H8&list=WL&index=1)
