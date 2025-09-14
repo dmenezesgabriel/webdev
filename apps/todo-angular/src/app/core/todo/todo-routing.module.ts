@@ -4,7 +4,7 @@ import { TodoComponent } from './todo.component';
 import { AuthGuard } from '../../auth/auth.guard';
 import { TodosResolver } from './todo.resolver';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'todos',
     component: TodoComponent,
