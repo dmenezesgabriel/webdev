@@ -10,6 +10,10 @@ export interface TodoListResponse {
   data: Todo[];
 }
 
+export interface TodoRequest {
+  title: string;
+}
+
 export interface TodoResponse {
   data: Todo;
 }
