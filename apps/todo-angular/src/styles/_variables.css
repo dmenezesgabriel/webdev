@@ -36,9 +36,9 @@
   --radius-xl: 24px;
 
   /* Shadows */
-  --shadow-card:
-    0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  --shadow-input-focus:
-    0 0 0 3px rgba(139, 92, 246, 0.1), 0 4px 12px rgba(139, 92, 246, 0.15);
+  --shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-input-focus: 0 0 0 3px rgba(139, 92, 246, 0.1),
+    0 4px 12px rgba(139, 92, 246, 0.15);
   --shadow-btn: 0 4px 15px rgba(139, 92, 246, 0.4);
 }

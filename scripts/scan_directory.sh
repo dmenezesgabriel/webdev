@@ -33,10 +33,11 @@ EXCLUDE_PATTERNS=(
   ".test.ts"
   # Styles
   ".scss"
-  ".css"
+  # ".css"
   # Markdown
   ".md"
   ".mdx"
+  ".ts"
 )
 
 # --- Argument Validation ---

@@ -1,4 +1,4 @@
-@import "../../../styles//form-elements.css";
+@import "../../../styles/_form-elements.css";
 
 div[card-content] {
   height: 500px;
