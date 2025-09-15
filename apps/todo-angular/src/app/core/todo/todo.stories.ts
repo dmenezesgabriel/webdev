@@ -156,13 +156,13 @@ export const Default: Story = {
 
     const currentTodoListItems = canvas.getAllByRole('listitem');
 
-    const firstTodoCheckbox = within(currentTodoListItems[2]).getByRole(
+    const lastTodoCheckbox = within(currentTodoListItems[2]).getByRole(
       'checkbox'
     );
-    await userEvent.click(firstTodoCheckbox);
+    await userEvent.click(lastTodoCheckbox);
 
     await waitFor(() => {
-      expect(firstTodoCheckbox).toBeChecked();
+      expect(lastTodoCheckbox).toBeChecked();
     });
 
     const lastTodoDeleteButton = within(currentTodoListItems[2]).getByRole(
