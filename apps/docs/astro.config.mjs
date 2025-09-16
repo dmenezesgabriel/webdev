@@ -15,7 +15,7 @@ console.log(PUBLIC_VITE_REMOTE_URL);
 // https://astro.build/config
 export default defineConfig({
   site: "https://dmenezesgabriel.github.io",
-  base: "/angular",
+  base: "/webdev",
 
   integrations: [
     starlight({
@@ -85,7 +85,7 @@ export default defineConfig({
       mode === "development"
         ? {
             proxy: {
-              "/angular/vite-remote": {
+              "/webdev/vite-remote": {
                 target: "http://localhost:4173",
                 changeOrigin: true,
                 secure: false,

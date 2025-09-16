@@ -1,6 +1,6 @@
 # Web Notes
 
-Visit https://dmenezesgabriel.github.io/angular/
+Visit https://dmenezesgabriel.github.io/webdev/
 
 WIP
 
