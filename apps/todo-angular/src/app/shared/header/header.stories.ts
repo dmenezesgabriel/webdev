@@ -10,6 +10,8 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
 import { AppRoutingModule } from '../../app-routing.module';
 import { provideHttpClient } from '@angular/common/http';
+import { AuthService } from '../../auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 const meta: Meta<HeaderComponent> = {
   title: 'Shared/Header',
@@ -47,3 +49,19 @@ export default meta;
 type Story = StoryObj<HeaderComponent>;
 
 export const Default: Story = {};
+
+export const LoggedIn: Story = {
+  decorators: [
+    applicationConfig({
+      providers: [
+        {
+          provide: AuthService,
+          useValue: {
+            isLoggedIn$: new BehaviorSubject(true).asObservable(),
+            logout: () => {},
+          },
+        },
+      ],
+    }),
+  ],
+};

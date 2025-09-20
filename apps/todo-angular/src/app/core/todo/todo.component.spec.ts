@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TodoComponent } from './todo.component';
 import { provideHttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CardComponent } from '../../shared/card/card.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from './todo.service';

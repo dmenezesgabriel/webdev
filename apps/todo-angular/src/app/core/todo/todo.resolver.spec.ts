@@ -45,6 +45,7 @@ describe('TodosResolver', () => {
       expect(todos).toEqual(mockTodos);
       expect(todoServiceMock.getTodos).toHaveBeenCalled();
     });
+
     done();
   });
 
@@ -60,6 +61,7 @@ describe('TodosResolver', () => {
         expect(todoServiceMock.getTodos).toHaveBeenCalled();
       },
     });
+
     done();
   });
 });

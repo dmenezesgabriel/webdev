@@ -71,7 +71,6 @@ header p {
   line-height: 1.5;
 }
 
-/* New styles for header links */
 .header-links {
   display: flex;
   align-items: center;
