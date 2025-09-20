@@ -38,98 +38,88 @@ describe('TodoService', () => {
     httpMock.verify();
   });
 
-  describe('TodoService', () => {
-    it('should create service', () => {
-      expect(service).toBeTruthy();
+  it('should create service', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should get todos with the correct URL and authorization header', () => {
+    const mockTodos: Todo[] = [
+      {
+        id: '1',
+        userId: '1',
+        title: 'Test Todo',
+        completedAt: null,
+        createdAt: new Date(),
+      },
+    ];
+
+    service.getTodos().subscribe((response) => {
+      expect(response.data).toEqual(mockTodos);
     });
 
-    it('should get todos with the correct URL and authorization header', () => {
-      const mockTodos: Todo[] = [
-        {
-          id: '1',
-          userId: '1',
-          title: 'Test Todo',
-          completedAt: null,
-          createdAt: new Date(),
-        },
-      ];
+    const req = httpMock.expectOne(`${environment.todoApiBaseUrl}/todos`);
 
-      service.getTodos().subscribe((response) => {
-        expect(response.data).toEqual(mockTodos);
-      });
+    expect(req.request.method).toBe('GET');
+    expect(req.request.headers.get('Authorization')).toBe('Bearer mock-token');
 
-      const req = httpMock.expectOne(`${environment.todoApiBaseUrl}/todos`);
+    req.flush({ data: mockTodos });
+  });
 
-      expect(req.request.method).toBe('GET');
-      expect(req.request.headers.get('Authorization')).toBe(
-        'Bearer mock-token'
-      );
+  it('should add todo with correct payload and header', () => {
+    const newTodoTitle = 'New Test Todo';
 
-      req.flush({ data: mockTodos });
+    const mockResponse: TodoResponse = {
+      data: {
+        id: '2',
+        userId: '1',
+        title: newTodoTitle,
+      },
+    };
+
+    service.addTodo(newTodoTitle).subscribe((response) => {
+      expect(response).toEqual(mockResponse);
     });
 
-    it('should add todo with correct payload and header', () => {
-      const newTodoTitle = 'New Test Todo';
+    const req = httpMock.expectOne(`${environment.todoApiBaseUrl}/todos`);
 
-      const mockResponse: TodoResponse = {
-        data: {
-          id: '2',
-          userId: '1',
-          title: newTodoTitle,
-        },
-      };
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({ title: newTodoTitle });
+    expect(req.request.headers.get('Authorization')).toBe('Bearer mock-token');
 
-      service.addTodo(newTodoTitle).subscribe((response) => {
-        expect(response).toEqual(mockResponse);
-      });
+    req.flush(mockResponse);
+  });
 
-      const req = httpMock.expectOne(`${environment.todoApiBaseUrl}/todos`);
+  it('should toggle a todo with the correct URl and headers', () => {
+    const todoId = 'mock-id';
 
-      expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({ title: newTodoTitle });
-      expect(req.request.headers.get('Authorization')).toBe(
-        'Bearer mock-token'
-      );
-
-      req.flush(mockResponse);
+    service.toggleTodo(todoId).subscribe((response) => {
+      expect(response).toBeDefined();
     });
 
-    it('should toggle a todo with the correct URl and headers', () => {
-      const todoId = 'mock-id';
+    const req = httpMock.expectOne(
+      `${environment.todoApiBaseUrl}/todos/${todoId}/toggle`
+    );
 
-      service.toggleTodo(todoId).subscribe((response) => {
-        expect(response).toBeDefined();
-      });
+    expect(req.request.method).toBe('PATCH');
+    expect(req.request.headers.get('Authorization')).toBe('Bearer mock-token');
 
-      const req = httpMock.expectOne(
-        `${environment.todoApiBaseUrl}/todos/${todoId}/toggle`
-      );
+    req.flush({});
+  });
 
-      expect(req.request.method).toBe('PATCH');
-      expect(req.request.headers.get('Authorization')).toBe(
-        'Bearer mock-token'
-      );
+  it('should delete a todo with the correct URL and headers', () => {
+    const todoId = 'mock-id';
 
-      req.flush({});
+    service.deleteTodo(todoId).subscribe((response) => {
+      expect(response).toBeUndefined();
     });
 
-    it('should delete a todo with the correct URL and headers', () => {
-      const todoId = 'mock-id';
+    const req = httpMock.expectOne(
+      `${environment.todoApiBaseUrl}/todos/${todoId}`
+    );
 
-      service.deleteTodo(todoId).subscribe((response) => {
-        expect(response).toBeUndefined();
-      });
+    expect(req.request.method).toBe('DELETE');
+    expect(req.request.headers.get('Authorization')).toBe('Bearer mock-token');
 
-      const req = httpMock.expectOne(
-        `${environment.todoApiBaseUrl}/todos/${todoId}`
-      );
-
-      expect(req.request.method).toBe('DELETE');
-      expect(req.request.headers.get('Authorization')).toBe(
-        'Bearer mock-token'
-      );
-
-      req.flush(null);
-    });
+    req.flush(null);
   });
 });
