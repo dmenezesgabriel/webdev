@@ -37,7 +37,10 @@ EXCLUDE_PATTERNS=(
   # Markdown
   ".md"
   ".mdx"
-  # ".ts"
+  ".ts"
+  "documentation.json"
+  "mockServiceWorker.js"
+  "coverage"
 )
 
 # --- Argument Validation ---
