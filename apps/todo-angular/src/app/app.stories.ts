@@ -6,15 +6,14 @@ import {
 } from '@storybook/angular';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
 
 import { provideRouter, RouterModule } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth/auth.service';
 import { provideHttpClient } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 const meta: Meta<AppComponent> = {
   title: 'App',
@@ -22,9 +21,8 @@ const meta: Meta<AppComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [HeaderComponent],
       imports: [
-        ReactiveFormsModule,
+        SharedModule,
         RouterModule.forChild([
           {
             path: 'iframe.html',
@@ -45,11 +43,7 @@ const meta: Meta<AppComponent> = {
             pathMatch: 'full',
           },
         ]),
-        importProvidersFrom(
-          ReactiveFormsModule,
-          AppRoutingModule,
-          CommonModule
-        ),
+        importProvidersFrom(SharedModule, AppRoutingModule, CommonModule),
       ],
     }),
   ],

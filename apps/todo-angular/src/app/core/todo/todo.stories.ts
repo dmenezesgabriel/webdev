@@ -19,6 +19,7 @@ import type {
 } from './todo.model';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { expect, userEvent, within, waitFor } from 'storybook/test';
+import { SharedModule } from '../../shared/shared.module';
 
 const mutatingHandlers = (todos: Todo[]) => [
   http.post<{}, TodoRequest, TodoResponse>(
@@ -71,8 +72,8 @@ const meta: Meta<TodoComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule],
-      declarations: [CardComponent, TodoItemComponent],
+      imports: [SharedModule],
+      declarations: [TodoItemComponent],
     }),
   ],
 };

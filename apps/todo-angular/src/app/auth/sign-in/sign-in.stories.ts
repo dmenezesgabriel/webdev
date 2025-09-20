@@ -4,10 +4,10 @@ import {
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { SignInComponent } from './sign-in.component';
-import { CardComponent } from '../../shared/card/card.component';
 import { provideHttpClient } from '@angular/common/http';
+import { SharedModule } from '../../shared/shared.module';
 
 const meta: Meta<SignInComponent> = {
   title: 'Auth/SignIn',
@@ -15,8 +15,7 @@ const meta: Meta<SignInComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule],
-      declarations: [CardComponent],
+      imports: [SharedModule],
     }),
     applicationConfig({ providers: [provideHttpClient()] }),
   ],
