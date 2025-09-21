@@ -18,7 +18,10 @@ initialize(
 
 if (process.env['NODE_ENV'] === 'production') {
   // @ts-ignore
-  __webpack_public_path__ = window.location.pathname.replace(/\/$/, '') + '/';
+  __webpack_public_path__ =
+    window.location.pathname
+      .replace(/\/iframe\.html$/, '') // remove iframe.html if present
+      .replace(/\/$/, '') + '/'; // ensure trailing slash
 }
 
 const preview: Preview = {
