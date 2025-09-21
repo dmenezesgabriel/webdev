@@ -9,6 +9,7 @@ import { loadEnv } from "vite";
 const mode = process.env.NODE_ENV ?? "development";
 const { PUBLIC_VITE_REMOTE_URL } = loadEnv(mode, process.cwd(), "");
 import expressiveCode from "astro-expressive-code";
+import pnpmRootPlugin from "./src/plugins/workspace-root";
 
 console.log(mode);
 console.log(PUBLIC_VITE_REMOTE_URL);
@@ -19,6 +20,7 @@ export default defineConfig({
   base: "/webdev",
 
   integrations: [
+    pnpmRootPlugin(),
     expressiveCode(),
     starlight({
       title: "WebDev",

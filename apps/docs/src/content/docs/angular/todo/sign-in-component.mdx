@@ -7,6 +7,8 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 import Code from "../../../../components/astro/code.astro";
 
+import { pnpmRoot } from "virtual:pnpm-root";
+
 <iframe
   style="height: 600px; border: none;"
   src="https://dmenezesgabriel.github.io/webdev/storybook-angular/iframe.html?id=auth-signin--docs"
@@ -16,28 +18,28 @@ import Code from "../../../../components/astro/code.astro";
 <Tabs>
   <TabItem label="Typescript">
     <Code
-      src="../../../../../apps/todo-angular/src/app/auth/sign-in/sign-in.component.ts"
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-in/sign-in.component.ts`}
       lang="ts"
       title="auth/sign-in/sign-in.component.ts"
     />
   </TabItem>
   <TabItem label="HTML">
     <Code
-      src="../../../../../apps/todo-angular/src/app/auth/sign-in/sign-in.component.html"
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-in/sign-in.component.html`}
       lang="html"
       title="auth/sign-in/sign-in.component.html"
     />
   </TabItem>
   <TabItem label="CSS">
     <Code
-      src="../../../../../apps/todo-angular/src/app/auth/sign-in/sign-in.component.css"
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-in/sign-in.component.css`}
       lang="css"
       title="auth/sign-in/sign-in.component.css"
     />
   </TabItem>
   <TabItem label="Story">
     <Code
-      src="../../../../../apps/todo-angular/src/app/auth/sign-in/sign-in.stories.ts"
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-in/sign-in.stories.ts`}
       lang="ts"
       title="auth/sign-in/sign-in.stories.ts"
     />
