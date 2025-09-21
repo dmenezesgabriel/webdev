@@ -69,10 +69,8 @@ describe('TodoComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('TodoComponent', () => {
-    it('should create component', () => {
-      expect(component).toBeTruthy();
-    });
+  it('should create component', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should load todos from the route resolver on ngOnInit', () => {

@@ -28,61 +28,59 @@ describe('TodoItemComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('TodoItemComponent', () => {
-    it('should create component', () => {
-      expect(component).toBeTruthy();
+  it('should create component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render correct title', () => {
+    const todoTitle = fixture.debugElement.query(
+      By.css('[data-testid="todo-title"]')
+    );
+
+    expect(todoTitle.nativeElement.textContent.trim()).toBe('Test Todo');
+  });
+
+  it('should emit the id of todo when its completion was toggled', (done) => {
+    const checkbox = fixture.debugElement.query(By.css('.todo-checkbox'));
+
+    component.toggle.pipe(first()).subscribe((emittedId) => {
+      expect(emittedId).toBe(mockTodo.id);
+      done();
     });
 
-    it('should render correct title', () => {
-      const todoTitle = fixture.debugElement.query(
-        By.css('[data-testid="todo-title"]')
-      );
+    checkbox.triggerEventHandler('change', null);
+  });
 
-      expect(todoTitle.nativeElement.textContent.trim()).toBe('Test Todo');
+  it('should emit the id of todo when it is deleted', (done) => {
+    const deleteButton = fixture.debugElement.query(By.css('.delete-btn'));
+
+    component.delete.pipe(first()).subscribe((emittedId) => {
+      expect(emittedId).toBe(mockTodo.id);
+      done();
     });
 
-    it('should emit the id of todo when its completion was toggled', (done) => {
-      const checkbox = fixture.debugElement.query(By.css('.todo-checkbox'));
+    deleteButton.triggerEventHandler('click', null);
+  });
 
-      component.toggle.pipe(first()).subscribe((emittedId) => {
-        expect(emittedId).toBe(mockTodo.id);
-        done();
-      });
+  it('should check the checkbox if the todo is completed', () => {
+    component.todo = { ...mockTodo, completedAt: new Date() };
 
-      checkbox.triggerEventHandler('change', null);
-    });
+    fixture.detectChanges();
 
-    it('should emit the id of todo when it is deleted', (done) => {
-      const deleteButton = fixture.debugElement.query(By.css('.delete-btn'));
+    const checkbox = fixture.debugElement.query(By.css('.todo-checkbox'));
 
-      component.delete.pipe(first()).subscribe((emittedId) => {
-        expect(emittedId).toBe(mockTodo.id);
-        done();
-      });
+    expect(checkbox.nativeElement.checked).toBe(true);
+  });
 
-      deleteButton.triggerEventHandler('click', null);
-    });
+  it('should not check the checkbox if the todo is not completed', () => {
+    const checkbox = fixture.debugElement.query(By.css('.todo-checkbox'));
 
-    it('should check the checkbox if the todo is completed', () => {
-      component.todo = { ...mockTodo, completedAt: new Date() };
+    expect(checkbox.nativeElement.checked).toBe(false);
+  });
 
-      fixture.detectChanges();
+  it('should throw an error if the todo input is not provided', () => {
+    component.todo = undefined as any;
 
-      const checkbox = fixture.debugElement.query(By.css('.todo-checkbox'));
-
-      expect(checkbox.nativeElement.checked).toBe(true);
-    });
-
-    it('should not check the checkbox if the todo is not completed', () => {
-      const checkbox = fixture.debugElement.query(By.css('.todo-checkbox'));
-
-      expect(checkbox.nativeElement.checked).toBe(false);
-    });
-
-    it('should throw an error if the todo input is not provided', () => {
-      component.todo = undefined as any;
-
-      expect(() => fixture.detectChanges()).toThrow();
-    });
+    expect(() => fixture.detectChanges()).toThrow();
   });
 });

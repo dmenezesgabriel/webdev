@@ -35,7 +35,7 @@ export class SignInComponent {
 
       this.authService.loginUser(credentials).subscribe({
         next: (response) => {
-          console.log('Login successful: ', response);
+          console.log('Login successful');
           this.authService.saveToken(response.data.token);
           this.router.navigate(['/todos']);
           this.isSubmitting = false;
