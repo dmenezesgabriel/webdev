@@ -57,7 +57,7 @@ export class SignUpComponent {
 
       this.authService.registerUser(newUser).subscribe({
         next: (response) => {
-          console.log('User registered successfully: ', response);
+          console.log('User registered successfully');
           this.isSubmitting = false;
           this.cdr.markForCheck();
           this.router.navigate(['/sign-in']);
