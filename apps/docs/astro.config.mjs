@@ -19,7 +19,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: "Angular Notes",
+      title: "WebDev",
       social: [
         {
           icon: "github",
@@ -29,25 +29,25 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Notes",
+          label: "Angular",
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: "Getting Started", slug: "notes/getting-started" },
-            { label: "Components", slug: "notes/components" },
-            { label: "Attribute Binding", slug: "notes/attribute-binding" },
-            { label: "Directives", slug: "notes/directives" },
+            { label: "Getting Started", slug: "angular/getting-started" },
+            { label: "Components", slug: "angular/components" },
+            { label: "Attribute Binding", slug: "angular/attribute-binding" },
+            { label: "Directives", slug: "angular/directives" },
             {
               label: "Extending Built-In HTML Elements",
-              slug: "notes/extending-builtin-elements",
+              slug: "angular/extending-builtin-elements",
             },
-            { label: "Zones and Change Detection", slug: "notes/zones" },
-            { label: "Observables", slug: "notes/observables" },
-            { label: "Signals", slug: "notes/signals" },
-            { label: "Modules", slug: "notes/modules" },
-            { label: "Services", slug: "notes/services" },
-            { label: "Http Requests", slug: "notes/http-requests" },
-            { label: "Pipes", slug: "notes/pipes" },
-            { label: "Typescript erros", slug: "notes/ts-errors" },
+            { label: "Zones and Change Detection", slug: "angular/zones" },
+            { label: "Observables", slug: "angular/observables" },
+            { label: "Signals", slug: "angular/signals" },
+            { label: "Modules", slug: "angular/modules" },
+            { label: "Services", slug: "angular/services" },
+            { label: "Http Requests", slug: "angular/http-requests" },
+            { label: "Pipes", slug: "angular/pipes" },
+            { label: "Typescript erros", slug: "angular/ts-errors" },
           ],
         },
       ],
