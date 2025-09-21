@@ -18,4 +18,5 @@ module.exports = {
   fakeTimers: {
     enableGlobally: true,
   },
+  coveragePathIgnorePatterns: ["\\.html$"],
 };

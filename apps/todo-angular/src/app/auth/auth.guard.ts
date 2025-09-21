@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-  type GuardResult,
-  type MaybeAsync,
-} from '@angular/router';
+import { CanActivate, Router, type GuardResult } from '@angular/router';
 import { AuthService } from './auth.service';
-import { map, take } from 'rxjs';
+import { map, take, type Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): MaybeAsync<GuardResult> {
+  canActivate(): Observable<GuardResult> {
     return this.authService.isLoggedIn$.pipe(
       take(1),
       map((isLoggedIn) => {
