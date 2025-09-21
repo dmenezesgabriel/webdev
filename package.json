@@ -10,7 +10,6 @@
     "preview:docs": "pnpm --filter docs preview",
     "dev:react": "pnpm --filter react-remote dev",
     "build:react": "pnpm --filter react-remote... build",
-    "prepreview:react": "pnpm --filter react-remote build",
     "preview:react": "pnpm --filter react-remote preview",
     "dev:todo-api": "pnpm --filter todo-api dev",
     "build:todo-openapi": "pnpm --filter todo-openapi... build",
@@ -18,5 +17,10 @@
     "start:todo-angular": "pnpm --filter todo-angular start",
     "storybook:todo-angular": "pnpm --filter todo-angular storybook",
     "build-storybook:todo-angular": "pnpm --filter todo-angular build-storybook"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "5.9.2"
+    }
   }
 }

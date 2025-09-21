@@ -8,6 +8,7 @@ import { loadEnv } from "vite";
 
 const mode = process.env.NODE_ENV ?? "development";
 const { PUBLIC_VITE_REMOTE_URL } = loadEnv(mode, process.cwd(), "");
+import expressiveCode from "astro-expressive-code";
 
 console.log(mode);
 console.log(PUBLIC_VITE_REMOTE_URL);
@@ -18,6 +19,7 @@ export default defineConfig({
   base: "/webdev",
 
   integrations: [
+    expressiveCode(),
     starlight({
       title: "WebDev",
       social: [
@@ -48,6 +50,15 @@ export default defineConfig({
             { label: "Http Requests", slug: "angular/http-requests" },
             { label: "Pipes", slug: "angular/pipes" },
             { label: "Typescript erros", slug: "angular/ts-errors" },
+            {
+              label: "Todo App",
+              items: [
+                {
+                  label: "SignIn Component",
+                  slug: "angular/todo/sign-in-component",
+                },
+              ],
+            },
           ],
         },
       ],

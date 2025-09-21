@@ -1,0 +1,17 @@
+---
+import { Code as ExpressiveCode } from "astro-expressive-code/components";
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+
+export interface Props extends Omit<Parameters<typeof ExpressiveCode>[0], 'code'> {
+  src: string;
+}
+
+const { src, lang, ...expressiveCodeProps } = Astro.props;
+
+const filePath = fileURLToPath(new URL(src, import.meta.url));
+
+const code = await readFile(filePath, 'utf-8');
+---
+
+<ExpressiveCode code={code} lang={lang} {...expressiveCodeProps} />
