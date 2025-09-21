@@ -12,5 +12,11 @@ const config: StorybookConfig = {
       },
     },
   },
+  webpackFinal: async (config) => {
+    if (config.output) {
+      config.output.publicPath = '/webdev/storybook-angular/';
+    }
+    return config;
+  },
 };
 export default config;

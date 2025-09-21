@@ -47,6 +47,9 @@ jobs:
       - name: Build with Astro
         run: pnpm build:docs
 
+      - name: Build Angular Storybook
+        run: pnpm build-storybook:todo-angular
+
       - name: Copy React remote to subfolder
         run: |
           mkdir -p apps/docs/dist/vite-remote
@@ -56,6 +59,11 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: apps/docs/dist
+
+      - name: Copy Angular Storybook build to subfolder
+        run: |
+          mkdir -p apps/docs/dist/storybook-todo-angular
+          cp -r apps/todo-angular/storybook-static/* apps/docs/dist/storybook-angular/
 
   deploy:
     environment:

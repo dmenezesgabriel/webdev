@@ -16,6 +16,7 @@
     "build:todo-openapi": "pnpm --filter todo-openapi... build",
     "build:openapi-spec-bundler": "pnpm --filter openapi-spec-bundler... build",
     "start:todo-angular": "pnpm --filter todo-angular start",
-    "storybook:todo-angular": "pnpm --filter todo-angular storybook"
+    "storybook:todo-angular": "pnpm --filter todo-angular storybook",
+    "build-storybook:todo-angular": "pnpm --filter todo-angular build-storybook"
   }
 }
