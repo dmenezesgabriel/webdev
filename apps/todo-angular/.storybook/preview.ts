@@ -6,11 +6,15 @@ import { themes } from '@storybook/theming';
 
 setCompodocJson(docJson);
 
-initialize({
-  serviceWorker: {
-    url: './mockServiceWorker.js',
-  },
-});
+initialize(
+  process.env['NODE_ENV'] === 'production'
+    ? {
+        serviceWorker: {
+          url: './mockServiceWorker.js',
+        },
+      }
+    : undefined
+);
 
 const preview: Preview = {
   parameters: {

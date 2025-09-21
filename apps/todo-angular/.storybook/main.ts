@@ -13,7 +13,7 @@ const config: StorybookConfig = {
     },
   },
   webpackFinal: async (config) => {
-    if (config.output) {
+    if (config.output && process.env['NODE_ENV'] === 'production') {
       config.output.publicPath = './';
     }
     return config;
