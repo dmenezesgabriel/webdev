@@ -16,6 +16,11 @@ initialize(
     : undefined
 );
 
+if (process.env['NODE_ENV'] === 'production') {
+  // @ts-ignore
+  __webpack_public_path__ = window.location.pathname.replace(/\/$/, '') + '/';
+}
+
 const preview: Preview = {
   parameters: {
     docs: {
