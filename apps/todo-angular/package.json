@@ -11,6 +11,7 @@
     "test:coverage": "jest --coverage",
     "init-msw": "msw init public/",
     "storybook": "ng run todo-angular:storybook",
+    "prebuild-storybook": "pnpm init-msw",
     "build-storybook": "ng run todo-angular:build-storybook"
   },
   "private": true,
