@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -17,7 +21,8 @@ export class SignInComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   signInForm = this.fb.group({
@@ -39,10 +44,12 @@ export class SignInComponent {
           this.authService.saveToken(response.data.token);
           this.router.navigate(['/todos']);
           this.isSubmitting = false;
+          this.cdr.markForCheck();
         },
         error: (error) => {
           console.log('Login failed', error);
           this.isSubmitting = false;
+          this.cdr.markForCheck();
         },
       });
     } else {

@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormBuilder, Validators, type AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -29,7 +33,8 @@ export class SignUpComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   signUpForm = this.fb.group(
@@ -54,11 +59,13 @@ export class SignUpComponent {
         next: (response) => {
           console.log('User registered successfully: ', response);
           this.isSubmitting = false;
+          this.cdr.markForCheck();
           this.router.navigate(['/sign-in']);
         },
         error: (error) => {
           console.error('Registration failed: ', error);
           this.isSubmitting = false;
+          this.cdr.markForCheck();
         },
       });
     } else {
