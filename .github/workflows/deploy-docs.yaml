@@ -62,7 +62,7 @@ jobs:
 
       - name: Copy Angular Storybook build to subfolder
         run: |
-          mkdir -p apps/docs/dist/storybook-todo-angular
+          mkdir -p apps/docs/dist/storybook-angular
           cp -r apps/todo-angular/storybook-static/* apps/docs/dist/storybook-angular/
 
   deploy:
