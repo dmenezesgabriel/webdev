@@ -1,0 +1,47 @@
+---
+title: "Sign Up Component"
+description: "Todo application sign up component built with Angular"
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+import Code from "../../../../components/astro/code.astro";
+
+import { pnpmRoot } from "virtual:pnpm-root";
+
+<iframe
+  style="height: 600px; border: none;"
+  src="https://dmenezesgabriel.github.io/webdev/storybook-angular/iframe.html?id=auth-signup--docs"
+  width="100%"
+/>
+
+<Tabs>
+  <TabItem label="Typescript">
+    <Code
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-up/sign-up.component.ts`}
+      lang="ts"
+      title="auth/sign-up/sign-up.component.ts"
+    />
+  </TabItem>
+  <TabItem label="HTML">
+    <Code
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-up/sign-up.component.html`}
+      lang="html"
+      title="auth/sign-up/sign-up.component.html"
+    />
+  </TabItem>
+  <TabItem label="CSS">
+    <Code
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-up/sign-up.component.css`}
+      lang="css"
+      title="auth/sign-up/sign-up.component.css"
+    />
+  </TabItem>
+  <TabItem label="Story">
+    <Code
+      src={`${pnpmRoot}/apps/todo-angular/src/app/auth/sign-up/sign-up.stories.ts`}
+      lang="ts"
+      title="auth/sign-up/sign-up.stories.ts"
+    />
+  </TabItem>
+</Tabs>
