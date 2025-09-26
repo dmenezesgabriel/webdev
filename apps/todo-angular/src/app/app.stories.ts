@@ -11,7 +11,7 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthService } from './auth/auth.service';
+import { JwtAuthService } from './auth/jwt-auth.service';
 import { provideHttpClient } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
@@ -34,7 +34,7 @@ const meta: Meta<AppComponent> = {
     }),
     applicationConfig({
       providers: [
-        AuthService,
+        JwtAuthService,
         provideHttpClient(),
         provideRouter([
           {

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import type { Observable } from 'rxjs';
 import type { TodoListResponse, TodoResponse } from './todo.model';
-import { AuthService } from '../../auth/auth.service';
+import { JwtAuthService } from '../../auth/jwt-auth.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -11,10 +11,13 @@ import { environment } from '../../../environments/environment';
 export class TodoService {
   private baseUrl = environment.todoApiBaseUrl;
 
-  constructor(private http: HttpClient, private AuthService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private JwtAuthService: JwtAuthService,
+  ) {}
 
   getTodos(): Observable<TodoListResponse> {
-    const token = this.AuthService.getToken();
+    const token = this.JwtAuthService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.get<TodoListResponse>(`${this.baseUrl}/todos`, {
@@ -23,29 +26,29 @@ export class TodoService {
   }
 
   addTodo(title: string): Observable<TodoResponse> {
-    const token = this.AuthService.getToken();
+    const token = this.JwtAuthService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.post<TodoResponse>(
       `${this.baseUrl}/todos`,
       { title },
-      { headers }
+      { headers },
     );
   }
 
   toggleTodo(id: string): Observable<TodoResponse> {
-    const token = this.AuthService.getToken();
+    const token = this.JwtAuthService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.patch<TodoResponse>(
       `${this.baseUrl}/todos/${id}/toggle`,
       {},
-      { headers }
+      { headers },
     );
   }
 
   deleteTodo(id: string): Observable<void> {
-    const token = this.AuthService.getToken();
+    const token = this.JwtAuthService.getToken();
     const headers = { Authorization: `Bearer ${token}` };
 
     return this.http.delete<void>(`${this.baseUrl}/todos/${id}`, { headers });

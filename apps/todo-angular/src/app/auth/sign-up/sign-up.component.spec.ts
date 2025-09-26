@@ -10,17 +10,17 @@ import { provideHttpClient } from '@angular/common/http';
 import { CardComponent } from '../../shared/card/card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { JwtAuthService } from '../jwt-auth.service';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;
   let fixture: ComponentFixture<SignUpComponent>;
-  let authService: AuthService;
+  let JwtAuthService: JwtAuthService;
   let router: Router;
 
-  const mockAuthService = {
+  const mockJwtAuthService = {
     registerUser: jest.fn(),
   };
 
@@ -36,17 +36,17 @@ describe('SignUpComponent', () => {
       imports: [ReactiveFormsModule],
       providers: [
         provideHttpClient(),
-        { provide: AuthService, useValue: mockAuthService },
+        { provide: JwtAuthService, useValue: mockJwtAuthService },
         { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SignUpComponent);
     component = fixture.componentInstance;
-    authService = TestBed.inject(AuthService);
+    JwtAuthService = TestBed.inject(JwtAuthService);
     router = TestBed.inject(Router);
 
-    mockAuthService.registerUser.mockReset();
+    mockJwtAuthService.registerUser.mockReset();
     mockRouter.navigate.mockReset();
 
     fixture.detectChanges();
@@ -78,7 +78,7 @@ describe('SignUpComponent', () => {
     const errorMessage = fixture.debugElement.query(By.css('.error-message'));
     expect(nameControl?.invalid).toBe(true);
     expect(errorMessage.nativeElement.textContent).toContain(
-      'Name must be at least 3 characters'
+      'Name must be at least 3 characters',
     );
   }));
 
@@ -99,9 +99,9 @@ describe('SignUpComponent', () => {
     expect(component.signUpForm.valid).toBe(false);
   }));
 
-  it('should call authService registerUser and navigate on valid form submission', fakeAsync(() => {
+  it('should call JwtAuthService registerUser and navigate on valid form submission', fakeAsync(() => {
     const mockResponse = { data: { id: '1', name: 'John Doe' } };
-    mockAuthService.registerUser.mockReturnValue(of(mockResponse));
+    mockJwtAuthService.registerUser.mockReturnValue(of(mockResponse));
 
     component.signUpForm.setValue({
       name: 'John Doe',
@@ -116,7 +116,7 @@ describe('SignUpComponent', () => {
     fixture.detectChanges();
     tick();
 
-    expect(mockAuthService.registerUser).toHaveBeenCalledWith({
+    expect(mockJwtAuthService.registerUser).toHaveBeenCalledWith({
       name: 'John Doe',
       email: 'johndoe@eample.com',
       password: '123456',
@@ -129,10 +129,10 @@ describe('SignUpComponent', () => {
 
   it('should handle registration error gracefully', fakeAsync(() => {
     const mockError = { error: 'Registration failed' };
-    mockAuthService.registerUser.mockReturnValue(
+    mockJwtAuthService.registerUser.mockReturnValue(
       throwError(() => {
         mockError;
-      })
+      }),
     );
 
     component.signUpForm.setValue({
@@ -148,7 +148,7 @@ describe('SignUpComponent', () => {
     fixture.detectChanges();
     tick();
 
-    expect(mockAuthService.registerUser).toHaveBeenCalled();
+    expect(mockJwtAuthService.registerUser).toHaveBeenCalled();
     expect(router.navigate).not.toHaveBeenCalled();
     expect(component.isSubmitting).toBe(false);
   }));

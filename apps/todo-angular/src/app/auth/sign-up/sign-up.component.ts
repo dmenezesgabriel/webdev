@@ -4,7 +4,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, Validators, type AbstractControl } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { JwtAuthService } from '../jwt-auth.service';
 import { Router } from '@angular/router';
 import type { NewUser } from '../../core/user/user.model';
 
@@ -32,9 +32,9 @@ export class SignUpComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private JwtAuthService: JwtAuthService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   signUpForm = this.fb.group(
@@ -44,7 +44,7 @@ export class SignUpComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
     },
-    { validators: [passwordMatchValidator] }
+    { validators: [passwordMatchValidator] },
   );
 
   onSubmit(event: Event) {
@@ -55,7 +55,7 @@ export class SignUpComponent {
 
       const newUser = this.signUpForm.value as NewUser;
 
-      this.authService.registerUser(newUser).subscribe({
+      this.JwtAuthService.registerUser(newUser).subscribe({
         next: (response) => {
           console.log('User registered successfully');
           this.isSubmitting = false;

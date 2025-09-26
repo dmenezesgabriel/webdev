@@ -4,7 +4,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { JwtAuthService } from '../jwt-auth.service';
 
 import { Router } from '@angular/router';
 import type { LoginCredentials } from '../auth.model';
@@ -21,8 +21,8 @@ export class SignInComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private JwtAuthService: JwtAuthService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   signInForm = this.fb.group({
@@ -38,10 +38,10 @@ export class SignInComponent {
 
       const credentials = this.signInForm.value as LoginCredentials;
 
-      this.authService.loginUser(credentials).subscribe({
+      this.JwtAuthService.loginUser(credentials).subscribe({
         next: (response) => {
           console.log('Login successful');
-          this.authService.saveToken(response.data.token);
+          this.JwtAuthService.saveToken(response.data.token);
           this.router.navigate(['/todos']);
           this.isSubmitting = false;
           this.cdr.markForCheck();

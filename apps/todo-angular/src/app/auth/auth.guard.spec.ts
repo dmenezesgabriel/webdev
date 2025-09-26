@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
+import { JwtAuthService } from './jwt-auth.service';
 import { BehaviorSubject, take } from 'rxjs';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
-  let authService: AuthService;
+  let JwtAuthService: JwtAuthService;
   let router: Router;
 
   const isLoggedInSubject = new BehaviorSubject<boolean>(false);
 
-  const mockAuthService = {
+  const mockJwtAuthService = {
     isLoggedIn$: isLoggedInSubject.asObservable(),
   };
 
@@ -23,13 +23,13 @@ describe('AuthGuard', () => {
     TestBed.configureTestingModule({
       providers: [
         AuthGuard,
-        { provide: AuthService, useValue: mockAuthService },
+        { provide: JwtAuthService, useValue: mockJwtAuthService },
         { provide: Router, useValue: mockRouter },
       ],
     });
 
     guard = TestBed.inject(AuthGuard);
-    authService = TestBed.inject(AuthService);
+    JwtAuthService = TestBed.inject(JwtAuthService);
     router = TestBed.inject(Router);
   });
 

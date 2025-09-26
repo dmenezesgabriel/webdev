@@ -10,7 +10,7 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
 import { AppRoutingModule } from '../../app-routing.module';
 import { provideHttpClient } from '@angular/common/http';
-import { AuthService } from '../../auth/auth.service';
+import { JwtAuthService } from '../../auth/jwt-auth.service';
 import { BehaviorSubject } from 'rxjs';
 
 const meta: Meta<HeaderComponent> = {
@@ -55,7 +55,7 @@ export const LoggedIn: Story = {
     applicationConfig({
       providers: [
         {
-          provide: AuthService,
+          provide: JwtAuthService,
           useValue: {
             isLoggedIn$: new BehaviorSubject(true).asObservable(),
             logout: () => {},

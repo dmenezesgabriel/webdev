@@ -9,18 +9,18 @@ import { HeaderComponent } from './header.component';
 import { provideHttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
-import { AuthService } from '../../auth/auth.service';
+import { JwtAuthService } from '../../auth/jwt-auth.service';
 import { By } from '@angular/platform-browser';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let mockActivatedRoute: any;
-  let authService: AuthService;
+  let JwtAuthService: JwtAuthService;
 
   const isLoggedInSubject = new BehaviorSubject<boolean>(false);
 
-  const mockAuthService = {
+  const mockJwtAuthService = {
     isLoggedIn$: isLoggedInSubject.asObservable(),
     logout: jest.fn(),
   };
@@ -40,8 +40,8 @@ describe('HeaderComponent', () => {
           useValue: mockActivatedRoute,
         },
         {
-          provide: AuthService,
-          useValue: mockAuthService,
+          provide: JwtAuthService,
+          useValue: mockJwtAuthService,
         },
       ],
     }).compileComponents();
@@ -92,7 +92,7 @@ describe('HeaderComponent', () => {
     }));
   });
 
-  it('should call AuthService logout method when logout button is clicked', fakeAsync(() => {
+  it('should call JwtAuthService logout method when logout button is clicked', fakeAsync(() => {
     isLoggedInSubject.next(true);
 
     fixture.detectChanges();
@@ -104,6 +104,6 @@ describe('HeaderComponent', () => {
 
     logoutLink.nativeElement.click();
 
-    expect(mockAuthService.logout).toHaveBeenCalled();
+    expect(mockJwtAuthService.logout).toHaveBeenCalled();
   }));
 });

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
+import { JwtAuthService } from './jwt-auth.service';
 
 import { provideHttpClient } from '@angular/common/http';
 import type { NewUser, User } from '../core/user/user.model';
@@ -13,8 +13,8 @@ import {
 import { Router } from '@angular/router';
 import { LoggedIn } from '../shared/header/header.stories';
 
-describe('AuthService', () => {
-  let service: AuthService;
+describe('JwtAuthService', () => {
+  let service: JwtAuthService;
   let httpMock: HttpTestingController;
   let router: Router;
 
@@ -24,10 +24,14 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting(), AuthService],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        JwtAuthService,
+      ],
     });
 
-    service = TestBed.inject(AuthService);
+    service = TestBed.inject(JwtAuthService);
     httpMock = TestBed.inject(HttpTestingController);
     router = TestBed.inject(Router);
   });

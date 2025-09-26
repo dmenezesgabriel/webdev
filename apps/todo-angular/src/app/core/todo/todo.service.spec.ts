@@ -6,7 +6,7 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { AuthService } from '../../auth/auth.service';
+import { JwtAuthService } from '../../auth/jwt-auth.service';
 import { provideHttpClient } from '@angular/common/http';
 import type { Todo, TodoResponse } from './todo.model';
 import { environment } from '../../../environments/environment';
@@ -14,10 +14,10 @@ import { environment } from '../../../environments/environment';
 describe('TodoService', () => {
   let service: TodoService;
   let httpMock: HttpTestingController;
-  let authServiceMock: Partial<AuthService>;
+  let JwtAuthServiceMock: Partial<JwtAuthService>;
 
   beforeEach(() => {
-    authServiceMock = {
+    JwtAuthServiceMock = {
       getToken: jest.fn().mockReturnValue('mock-token'),
     };
 
@@ -26,7 +26,7 @@ describe('TodoService', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         TodoService,
-        { provide: AuthService, useValue: authServiceMock },
+        { provide: JwtAuthService, useValue: JwtAuthServiceMock },
       ],
     });
 
@@ -97,7 +97,7 @@ describe('TodoService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.todoApiBaseUrl}/todos/${todoId}/toggle`
+      `${environment.todoApiBaseUrl}/todos/${todoId}/toggle`,
     );
 
     expect(req.request.method).toBe('PATCH');
@@ -114,7 +114,7 @@ describe('TodoService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${environment.todoApiBaseUrl}/todos/${todoId}`
+      `${environment.todoApiBaseUrl}/todos/${todoId}`,
     );
 
     expect(req.request.method).toBe('DELETE');

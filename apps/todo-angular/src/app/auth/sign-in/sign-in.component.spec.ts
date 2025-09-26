@@ -9,7 +9,7 @@ import { SignInComponent } from './sign-in.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { CardComponent } from '../../shared/card/card.component';
-import { AuthService } from '../auth.service';
+import { JwtAuthService } from '../jwt-auth.service';
 import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
@@ -17,10 +17,10 @@ import { of, throwError } from 'rxjs';
 describe('SignInComponent', () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
-  let authService: AuthService;
+  let JwtAuthService: JwtAuthService;
   let router: Router;
 
-  const mockAuthService = {
+  const mockJwtAuthService = {
     loginUser: jest.fn(),
     saveToken: jest.fn(),
   };
@@ -36,17 +36,17 @@ describe('SignInComponent', () => {
       providers: [
         provideHttpClient(),
         FormBuilder,
-        { provide: AuthService, useValue: mockAuthService },
+        { provide: JwtAuthService, useValue: mockJwtAuthService },
         { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SignInComponent);
     component = fixture.componentInstance;
-    authService = TestBed.inject(AuthService);
+    JwtAuthService = TestBed.inject(JwtAuthService);
     router = TestBed.inject(Router);
 
-    mockAuthService.loginUser.mockReset();
+    mockJwtAuthService.loginUser.mockReset();
     mockRouter.navigate.mockReset();
 
     fixture.detectChanges();
@@ -81,14 +81,14 @@ describe('SignInComponent', () => {
     expect(emailControl?.invalid).toBe(true);
     expect(erroMessage).toBeTruthy();
     expect(erroMessage.nativeElement.textContent).toContain(
-      'Please enter a valid email'
+      'Please enter a valid email',
     );
   }));
 
-  it('should call authService loginUser and navigate on valid form submission', fakeAsync(() => {
+  it('should call JwtAuthService loginUser and navigate on valid form submission', fakeAsync(() => {
     const mockResponse = { data: { token: 'mock-token-123' } };
 
-    mockAuthService.loginUser.mockReturnValue(of(mockResponse));
+    mockJwtAuthService.loginUser.mockReturnValue(of(mockResponse));
 
     component.signInForm.setValue({
       email: 'johndoe@example.com',
@@ -101,7 +101,7 @@ describe('SignInComponent', () => {
     fixture.detectChanges();
     tick();
 
-    expect(mockAuthService.saveToken).toHaveBeenCalledWith('mock-token-123');
+    expect(mockJwtAuthService.saveToken).toHaveBeenCalledWith('mock-token-123');
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/todos']);
     expect(component.isSubmitting).toBe(false);
   }));
@@ -109,7 +109,7 @@ describe('SignInComponent', () => {
   it('should handle login error gracefully', fakeAsync(() => {
     const mockError = { error: 'Invalid Credentials' };
 
-    mockAuthService.loginUser.mockReturnValue(throwError(() => mockError));
+    mockJwtAuthService.loginUser.mockReturnValue(throwError(() => mockError));
 
     component.signInForm.setValue({
       email: 'johndoe@eample.com',
@@ -122,7 +122,7 @@ describe('SignInComponent', () => {
     fixture.detectChanges();
     tick();
 
-    expect(mockAuthService.loginUser).toHaveBeenCalled();
+    expect(mockJwtAuthService.loginUser).toHaveBeenCalled();
     expect(mockRouter.navigate).not.toHaveBeenCalled();
     expect(component.isSubmitting).toBe(false);
   }));

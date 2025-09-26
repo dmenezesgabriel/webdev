@@ -6,18 +6,22 @@ import type { Observable } from 'rxjs';
 import type { AuthTokenResponse, LoginCredentials } from './auth.model';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, tap } from 'rxjs';
+import type { AuthStrategy } from './auth.strategy';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class JwtAuthService implements AuthStrategy {
   private readonly TOKEN_KEY = 'authToken';
   private baseUrl = environment.todoApiBaseUrl;
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   isLoggedIn$ = this.loggedIn.asObservable();
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+  ) {}
 
   registerUser(userData: NewUser): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/users`, userData);
@@ -30,7 +34,7 @@ export class AuthService {
         tap((response) => {
           this.saveToken(response.data.token);
           this.loggedIn.next(true);
-        })
+        }),
       );
   }
 
