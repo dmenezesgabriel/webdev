@@ -17,10 +17,5 @@
     "start:todo-angular": "pnpm --filter todo-angular start",
     "storybook:todo-angular": "pnpm --filter todo-angular storybook",
     "build-storybook:todo-angular": "pnpm --filter todo-angular build-storybook"
-  },
-  "pnpm": {
-    "overrides": {
-      "typescript": "5.9.2"
-    }
   }
 }
